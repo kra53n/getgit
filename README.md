@@ -1,2 +1,8 @@
-# getgit
-Getgit give information about repositories of users and cloning theme
+# Getgit
+
+## Statrup
+
+```sh
+go build -o b build.go
+./b
+```
