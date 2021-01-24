@@ -1,6 +1,4 @@
 # parse web information
-# author: Krai53n
-# date of creating: 24.01.21
 
 
 from requests import get as requests_get
@@ -17,11 +15,13 @@ def request_html(path):
     return html_doc.text
 
 
-def github_parse_reps(html_doc):
+def github_parse_reps(path):
     '''Catch repositories from Github page of user.
     And return list of repositories`s name
     '''
+    html_doc = request_html(path)
     soup = BeautifulSoup(html_doc, "html.parser")
+
     reps = []
     for tag in soup.find_all("h3"):
         rep = tag.find("a").string
@@ -29,10 +29,3 @@ def github_parse_reps(html_doc):
         rep = rep.replace(" ", "")
         reps.append(rep)
     return reps
-
-
-if __name__ == "__main__":
-    PATH = "https://github.com/Krai53n?tab=repositories"
-    html_doc = request_html(PATH)
-    reps = github_parse_reps(html_doc)
-    print(reps)
