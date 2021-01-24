@@ -1,2 +1,2 @@
 # Getgit
-Getgit give information about repositories of users and cloning theme
+Getgit give information about repositories of user and cloning theme
