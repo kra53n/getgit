@@ -5,10 +5,13 @@ from yaml import FullLoader
 from yaml import dump
 
 
+PATH_CONF_FILE = "config/config.yaml"
+
+
 def load_data():
     """Return parsed data from config.yaml
     """
-    with open("config.yaml") as f:
+    with open(PATH_CONF_FILE) as f:
         data = load(f, Loader=FullLoader)
     return data
 
@@ -16,7 +19,7 @@ def put_data(service, nickname):
     """Put service(github, gitlab, ...) and nickname inot config.yaml
     """
     data = {"service": service, "nickname": nickname}
-    with open("config.yaml", "w") as f:
+    with open(PATH_CONF_FILE, "w") as f:
         dump(data, f)
 
 def check_filling_of_data():
