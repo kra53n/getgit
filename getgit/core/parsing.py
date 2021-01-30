@@ -15,10 +15,11 @@ def request_html(path):
     return html_doc.text
 
 
-def github_parse_reps(path):
+def github_parse_reps(nickname):
     '''Catch repositories from Github page of user.
     And return list of repositories`s name
     '''
+    path = "https://github.com/" + nickname + "?tab=repositories"
     html_doc = request_html(path)
     soup = BeautifulSoup(html_doc, "html.parser")
 
