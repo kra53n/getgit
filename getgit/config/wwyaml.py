@@ -4,29 +4,50 @@ from yaml import load
 from yaml import FullLoader
 from yaml import dump
 
+from sys import platform
+from sys import exit
+from os import mkdir
 
-PATH_CONF_FILE = "config/config.yaml"
+
+if platform == "linux":
+    from pathlib import Path
+    path_conf_file = str(Path.home()) + "/.config/getgit/config.yaml"
 
 
-def load_data():
+def create_file(path=path_conf_file):
+    """Create file in define path
+    """
+    mkdir(path[:-12])
+    with open(path, "w") as f:
+        f.write("service:\nnickname:")
+
+def load_data(path=path_conf_file):
     """Return parsed data from config.yaml
     """
-    with open(PATH_CONF_FILE) as f:
-        data = load(f, Loader=FullLoader)
-    return data
+    try:
+        with open(path) as f:
+            data = load(f, Loader=FullLoader)
+        return data
 
-def put_data(service, nickname):
+    except FileNotFoundError:
+        create_file()
+
+def put_data(service, nickname, path=path_conf_file):
     """Put service(github, gitlab, ...) and nickname inot config.yaml
     """
     data = {"service": service, "nickname": nickname}
-    with open(PATH_CONF_FILE, "w") as f:
+    with open(path, "w") as f:
         dump(data, f)
 
-def check_filling_of_data():
+def check_filling_of_data(path=path_conf_file):
     """If service and nickname in config.yaml exist then return 1.
     Otherwise return 0
     """
-    data = load_data()
-    if (data["service"] == None) and (data["nickname"] == None):
-        return 0
-    return 1
+    data = load_data(path)
+    try:
+        if (data["service"] == None) and (data["nickname"] == None):
+            return 0
+        return 1
+    except TypeError:
+        print("Config file was add in ~/.config/getgit/ as config.yaml")
+        exit()

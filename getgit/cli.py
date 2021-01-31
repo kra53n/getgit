@@ -25,6 +25,7 @@ def main():
     if data == 0:
         """If user start this program for the first time
         """
+        introduce_program()
         menu_title = ask_git_version_service()[0]
         menu_items = ask_git_version_service()[1]
     if data == 1:
