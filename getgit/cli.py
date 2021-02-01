@@ -42,6 +42,7 @@ def main():
 
     if data == 0:
         git_service = ask_git_version_service()[1][menu_entry_index]
+        # TODO: check correctness of nickname
         nickname = input("Write your nickname: ")
 
         put_data(git_service, nickname)
