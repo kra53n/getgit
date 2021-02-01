@@ -16,7 +16,7 @@ def introduce_program():
     print(txt)
 
 def ask_git_version_service():
-    txt = "Choose git version that you use:\n"
+    txt = "Choose git service that you use:\n"
     gits = ("github", "gitlab")
     return txt, gits
 
