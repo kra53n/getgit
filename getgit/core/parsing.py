@@ -4,6 +4,8 @@
 from requests import get as requests_get
 from bs4 import BeautifulSoup
 
+from sys import exit
+
 
 def request_html(path):
     '''Check existing of page. If page not exist function
@@ -19,9 +21,16 @@ def github_parse_reps(nickname):
     '''Catch repositories from Github page of user.
     And return list of repositories`s name
     '''
-    path = "https://github.com/" + nickname + "?tab=repositories"
+    path = "https://github.com/" + str(nickname) + "?tab=repositories"
     html_doc = request_html(path)
-    soup = BeautifulSoup(html_doc, "html.parser")
+    try:
+        soup = BeautifulSoup(html_doc, "html.parser")
+    except TypeError:
+        '''If user have incorrect nickname'''
+        message = "You put incorrect nickname, go to $HOME/.config/getgit"
+        message += " and change in config.yaml `nickname`"
+        print(message)
+        exit()
 
     reps = []
     for tag in soup.find_all("h3"):
