@@ -1,4 +1,6 @@
 ## TODO
+- [ ] good music --> RMCM & JAMES ROCHE - DIAMONDS
+- [ ] make for Winodws simple cli
 - [ ] solve exception if user have not any reps on his page
 - [ ] test working simple-term-menu on Windows
 - [ ] make setup.py file
