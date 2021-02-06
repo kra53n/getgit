@@ -4,14 +4,12 @@ from yaml import load
 from yaml import FullLoader
 from yaml import dump
 
-from sys import platform
 from sys import exit
 from os import mkdir
 
 
-if platform == "linux":
-    from pathlib import Path
-    path_conf_file = str(Path.home()) + "/.config/getgit/config.yaml"
+from pathlib import Path
+path_conf_file = str(Path.home()) + "/.config/getgit/config.yaml"
 
 
 def create_file(path=path_conf_file):
