@@ -7,18 +7,10 @@ from config import load_data
 from core import github_parse_reps
 from core import clone_github_rep
 
+from general import introduce_program
+from general import ask_git_version_service
+from general import wishes
 
-def introduce_program():
-    txt = """
-    Welocme to getgit! I Hope that you will enjoy this program!
-    From people to people!
-    """
-    print(txt)
-
-def ask_git_version_service():
-    txt = "Choose git service that you use:\n"
-    gits = ("github", "gitlab")
-    return txt, gits
 
 def main():
     data = check_filling_of_data()
@@ -46,13 +38,7 @@ def main():
 
         put_data(git_service, nickname)
 
-        wishes = "\nEverythins is ready! If yow whant change something "
-        wishes += "just go to config/config.yaml and change there data"
-        print(wishes)
+        wishes()
     if data == 1:
         rep_name = menu_items[menu_entry_index]
         clone_github_rep(data_config["nickname"], rep_name)
-
-
-if __name__ == '__main__':
-    main()
