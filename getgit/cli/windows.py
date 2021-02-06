@@ -5,8 +5,8 @@ from config import load_data
 from core import github_parse_reps
 from core import clone_github_rep
 
-from .general import introduce_program
-from .general import ask_git_version_service
+from general import introduce_program
+from general import ask_git_version_service
 
 
 def choose_git_version_service_cli():
