@@ -54,6 +54,7 @@ class GnuLinux(Os):
             data_config = load_data()
             if data_config["service"] == "github":
                 menu_items = github_parse_reps(data_config["nickname"])
+
         terminal_menu = TerminalMenu(menu_entries=menu_items,
                                     title=menu_title,)
         menu_entry_index = terminal_menu.show()
@@ -68,11 +69,58 @@ class GnuLinux(Os):
         if self.data == 1:
             rep_name = menu_items[menu_entry_index]
             clone_github_rep(data_config["nickname"], rep_name)
+    
+
+class Windows(Os):
+    """Child of Os class
+    Cli interface for GnuLinux systems
+    """
+    def __init__(self):
+        super().__init__()
+        if self.data == 0:
+            """If user start this program for the first time
+            """
+            self.introduce_program()
+            git_service = self.choose_git_version_service_cli()
+            nickname = input("Write your nickname: ")
+
+            put_data(git_service, nickname)
+            self.wishes()
+        
+        if self.data == 1:
+            """If user have the data in .config/config.yaml
+            """
+            print("\tChoose repository to clone\n")
+            data_config = load_data()
+            if data_config["service"] == "github":
+                reps = github_parse_reps(data_config["nickname"])
+            rep_name = self.choose_reps_cli(reps)
+            clone_github_rep(data_config["nickname"], rep_name)
+
+    def choose_git_version_service_cli(self):
+        services = ask_git_version_service()[1]
+        for i in range(len(services)):
+            print("\t{}. {}".format(i+1, services[i]))
+        service_num = input("\nChoose git version: ")
+        service_num = int(service_num)-1
+        return services[service_num]
+    
+    def choose_reps_cli(self, reps):
+        """Allow user choose reps and return number of it
+        Reps have list type of data
+        """
+        for i in range(len(reps)):
+            print("\t{}. {}".format(i+1, reps[i]))
+        reps_num = input("\nChoose rep: ")
+        reps_num = int(reps_num)-1
+        return reps[reps_num]
 
 
 if __name__ == "__main__":
     from sys import platform
     if platform == "win32":
+        # Windows()
         pass
     if platform == "linux":
-        GnuLinux()
+        # GnuLinux()
+        Windows()
