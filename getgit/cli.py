@@ -45,8 +45,8 @@ class GnuLinux(Os):
             """If user start this program for the first time
             """
             self.introduce_program()
-            self.menu_title = ask_git_version_service()[0]
-            self.menu_items = ask_git_version_service()[1]
+            menu_title = self.ask_git_version_service()[0]
+            menu_items = self.ask_git_version_service()[1]
         if self.data == 1:
             """If user have the data in $HOME/.config/config.yaml
             """
@@ -60,7 +60,7 @@ class GnuLinux(Os):
         menu_entry_index = terminal_menu.show()
 
         if self.data == 0:
-            git_service = ask_git_version_service()[1][menu_entry_index]
+            git_service = self.ask_git_version_service()[1][menu_entry_index]
             nickname = input("Write you nickname: ")
 
             put_data(git_service, nickname)
@@ -98,7 +98,7 @@ class Windows(Os):
             clone_github_rep(data_config["nickname"], rep_name)
 
     def choose_git_version_service_cli(self):
-        services = ask_git_version_service()[1]
+        services = self.ask_git_version_service()[1]
         for i in range(len(services)):
             print("\t{}. {}".format(i+1, services[i]))
         service_num = input("\nChoose git version: ")
@@ -119,8 +119,6 @@ class Windows(Os):
 if __name__ == "__main__":
     from sys import platform
     if platform == "win32":
-        # Windows()
-        pass
-    if platform == "linux":
-        # GnuLinux()
         Windows()
+    if platform == "linux":
+        GnuLinux()
