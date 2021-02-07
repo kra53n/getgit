@@ -2,6 +2,7 @@
 - [ ] solve exception if user have not any reps on his page
 - [ ] make setup.py file
 - [ ] check network connection
+- [ ] try using curses in Windows
 
 ## COMPLETE
 - [x] make for Winodws simple cli
