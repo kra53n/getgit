@@ -1,8 +1,9 @@
 ## TODO
 - [ ] solve exception if user have not any reps on his page
-- [ ] make setup.py file
+- [ ] solve exiting in program without any mistake
 - [ ] check network connection
 - [ ] try using curses in Windows
+- [ ] make setup.py file
 
 ## COMPLETE
 - [x] make for Winodws simple cli
