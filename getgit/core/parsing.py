@@ -27,7 +27,11 @@ def github_parse_reps(nickname):
         soup = BeautifulSoup(html_doc, "html.parser")
     except TypeError:
         '''If user have incorrect nickname'''
-        message = "You put incorrect nickname, go to $HOME/.config/getgit"
+        from pathlib import Path
+        home = str(Path.home())
+
+        message = "You put incorrect nickname, "
+        message += "go to {}/.config/getgit".format(home)
         message += " and change in config.yaml `nickname`"
         print(message)
         exit()
