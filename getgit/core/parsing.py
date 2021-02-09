@@ -1,6 +1,6 @@
 # parse web information
 
-
+from requests import exceptions
 from requests import get as requests_get
 from bs4 import BeautifulSoup
 
@@ -11,7 +11,12 @@ def request_html(path):
     '''Check existing of page. If page not exist function
     return False
     '''
-    html_doc = requests_get(path)
+    try:
+        html_doc = requests_get(path)
+    except exceptions.ConnectionError:
+        print("I`m exception")
+        exit()
+
     if html_doc.status_code != 200:
         return False
     return html_doc.text
