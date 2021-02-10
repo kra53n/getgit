@@ -1,6 +1,6 @@
 # parse web information
 
-from requests import exceptions
+from requests import exceptions as requests_exceptions
 from requests import get as requests_get
 from bs4 import BeautifulSoup
 
@@ -13,7 +13,7 @@ def request_html(path):
     '''
     try:
         html_doc = requests_get(path)
-    except exceptions.ConnectionError:
+    except requests_exceptions.ConnectionError:
         print("I`m exception")
         exit()
 
