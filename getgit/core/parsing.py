@@ -14,7 +14,7 @@ def request_html(path):
     try:
         html_doc = requests_get(path)
     except requests_exceptions.ConnectionError:
-        print("I`m exception")
+        print("You lost your internet connection!")
         exit()
 
     if html_doc.status_code != 200:
