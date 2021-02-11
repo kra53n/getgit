@@ -1,5 +1,6 @@
 ## TODO
 - [ ] make exiting on Linux from program normal
+- [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] solve exception if user have not any reps on his page
 - [ ] solve exiting in program without any mistake
