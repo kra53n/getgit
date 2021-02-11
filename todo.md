@@ -1,4 +1,6 @@
 ## TODO
+- [ ] make exiting on Linux from program normal
+- [ ] make exiting on Windows
 - [ ] solve exception if user have not any reps on his page
 - [ ] solve exiting in program without any mistake
 - [ ] try using curses in Windows
