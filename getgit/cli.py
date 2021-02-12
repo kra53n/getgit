@@ -67,8 +67,8 @@ class GnuLinux(Os):
 
             self.wishes()
         if self.data == 1:
-            # if user decided to quit from program
             if menu_entry_index:
+                # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
                 clone_github_rep(data_config["nickname"], rep_name)
     
