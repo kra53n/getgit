@@ -27,7 +27,7 @@ class Os:
         return txt, gits
 
     def wishes(self):
-        wishes = "\nEverythins is ready! If yow whant change something "
+        wishes = "\nEverything is ready! If you want change something "
         wishes += "just go to config/config.yaml and change there data"
         print(wishes)
 
