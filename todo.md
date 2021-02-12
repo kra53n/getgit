@@ -5,6 +5,7 @@
 - [ ] solve exception if user have not any reps on his page
 - [ ] solve exiting in program without any mistake
 - [ ] try using curses in Windows
+
 - [ ] make setup.py file
 
 ## COMPLETE
