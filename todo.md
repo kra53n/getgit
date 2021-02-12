@@ -5,9 +5,10 @@
 - [ ] solve exiting in program without any mistake
 - [ ] try using curses in Windows
 
-- [ ] make setup.py file
+- [ ] fill setup.py
 
 ## COMPLETE
+- [x] make setup.py file
 - [x] make exiting on Linux from program normal
 - [x] make importing of requests in getgit/core/parsing.py better
 - [x] check network connection
