@@ -1,5 +1,4 @@
 ## TODO
-- [ ] make exiting on Linux from program normal
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] solve exception if user have not any reps on his page
@@ -9,6 +8,7 @@
 - [ ] make setup.py file
 
 ## COMPLETE
+- [x] make exiting on Linux from program normal
 - [x] make importing of requests in getgit/core/parsing.py better
 - [x] check network connection
 - [x] make for Winodws simple cli
