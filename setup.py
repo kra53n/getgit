@@ -17,8 +17,7 @@ setup(
     author_email="greasha46@gmail.com",
     install_requires=requirements,
     entry_points={
-        "console_scripts": [
-            "getgit = getgit.cli:main"
-        ]
+        "console_scripts": 
+            ["getgit = getgit.cli:main"]
     }
 )
