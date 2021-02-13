@@ -1,11 +1,11 @@
 """Cli interface for getgit"""
 
-from config import check_filling_of_data
-from config import put_data
-from config import load_data
+from getgit.config import check_filling_of_data
+from getgit.config import put_data
+from getgit.config import load_data
 
-from core import github_parse_reps
-from core import clone_github_rep
+from getgit.core import github_parse_reps
+from getgit.core import clone_github_rep
 
 
 class Os:
@@ -118,7 +118,7 @@ class Windows(Os):
         return reps[reps_num]
 
 
-if __name__ == "__main__":
+def main():
     from sys import platform
     if platform == "win32":
         Windows()

@@ -1,7 +1,7 @@
 # Getgit
 Getgit give information about repositories of user and cloning theme
 
-## Install  requirements
+## How to install
 ```sh
-pip install -r requirements.txt 
+sudo python setup.py install_scripts
 ```
