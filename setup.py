@@ -10,7 +10,7 @@ if platform == "linux":
 setup(
     name="getgit",
     version="0.0.1",
-    description="Clone repositoryies and give information about them",
+    description="Clone repositories and give information about them",
     packages=find_packages(),
     url="https://github.com/Krai53n/getgit",
     author="Gregory Bakhtin",
