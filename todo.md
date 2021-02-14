@@ -1,12 +1,12 @@
 ## TODO
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
-- [ ] solve exception if user have not any reps on his page
-- [ ] solve exiting in program without any mistake
 - [ ] try using curses in Windows
 
 
 ## COMPLETE
+- [x] solve exception if user have not any reps on his page
+- [x] solve exiting in program without any mistake
 - [x] fill setup.py
 - [x] make setup.py file
 - [x] make exiting on Linux from program normal
