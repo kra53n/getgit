@@ -12,7 +12,7 @@ sudo python setup.py install_scripts
 
 ### Windows
 
-**_not working correctly on Windows now_**
+*_not working correctly on Windows now_*
 
 ```sh
 python setup.py install_scripts
