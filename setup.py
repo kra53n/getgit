@@ -5,6 +5,11 @@ from sys import platform
 requirements = ["bs4"]
 if platform == "linux":
     requirements.append("simple-term-menu")
+if platform == "win32":
+    requirements.append(
+        "pyyaml",
+        "requests"
+    )
 
 
 setup(
