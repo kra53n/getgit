@@ -4,9 +4,12 @@
 - [ ] make documentaion
 - [ ] make OS dependencies
 -----------------------------------------------
+### Windows
+- [ ] check installing of getgit
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
+-----------------------------------------------
 
 
 ## COMPLETE
