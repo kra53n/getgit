@@ -16,6 +16,9 @@ setup(
     author="Gregory Bakhtin",
     author_email="greasha46@gmail.com",
     install_requires=requirements,
+    classifiers=[
+        "Programming Language :: Python :: 3",
+    ],
     entry_points={
         "console_scripts": 
             ["getgit = getgit.cli:main"]
