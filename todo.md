@@ -1,4 +1,5 @@
 ## TODO
+- [ ] make installing of scripts from PyPI
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
