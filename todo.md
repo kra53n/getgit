@@ -3,7 +3,7 @@
 - [ ] make installing of scripts from PyPI
 - [ ] make documentaion
 - [ ] make OS dependencies
-
+-----------------------------------------------
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
