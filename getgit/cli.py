@@ -90,7 +90,7 @@ class Windows(Os):
             self.wishes()
         
         if self.data == 1:
-            """If user have the data in .config/config.yaml
+            """If user have the data in .config\config.yaml
             """
             print("\tChoose repository to clone\n")
             data_config = load_data()
