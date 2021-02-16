@@ -11,12 +11,10 @@ from os import mkdir
 
 from pathlib import Path
 path_conf_file = str(Path.home())
-#if platform == "linux":
-    #path_conf_file += "/.config/getgit/config.yaml"
-#if platform == "win32":
-    #path_conf_file += r"\.config\getgit\config.yaml"
-path_conf_file += r"\.config\getgit\config.yaml"
-print(path_conf_file)
+if platform == "linux":
+    path_conf_file += "/.config/getgit/config.yaml"
+if platform == "win32":
+    path_conf_file += r"\.config\getgit\config.yaml"
 
 
 def create_file(path=path_conf_file):
