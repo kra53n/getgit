@@ -56,7 +56,7 @@ class GnuLinux(Os):
                 menu_items = github_parse_reps(data_config["nickname"])
 
         terminal_menu = TerminalMenu(menu_entries=menu_items,
-                                    title=menu_title,)
+                                     title=menu_title,)
         menu_entry_index = terminal_menu.show()
 
         if self.data == 0:
@@ -67,11 +67,11 @@ class GnuLinux(Os):
 
             self.wishes()
         if self.data == 1:
-            if menu_entry_index:
+            if menu_entry_index != None:
                 # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
                 clone_github_rep(data_config["nickname"], rep_name)
-    
+
 
 class Windows(Os):
     """Child of Os class
@@ -88,7 +88,7 @@ class Windows(Os):
 
             put_data(git_service, nickname)
             self.wishes()
-        
+
         if self.data == 1:
             """If user have the data in .config\config.yaml
             """
@@ -106,7 +106,7 @@ class Windows(Os):
         service_num = input("\nChoose git version: ")
         service_num = int(service_num)-1
         return services[service_num]
-    
+
     def choose_reps_cli(self, reps):
         """Allow user choose reps and return number of it
         Reps have list type of data
