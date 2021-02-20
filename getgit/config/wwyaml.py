@@ -14,12 +14,15 @@ path_conf_file = str(Path.home())
 if platform == "linux":
     path_conf_file += "/.config/getgit/config.yaml"
 if platform == "win32":
+    # TODO: need here r or not
     path_conf_file += r"\.config\getgit\config.yaml"
 
 
 def create_file(path=path_conf_file):
     """Create file in define path
     """
+    # TODO: check working of mkdir
+    # make simulation with path and actions that located under
     mkdir(path[:-12])
     with open(path, "w") as f:
         f.write("service:\nnickname:")
