@@ -5,7 +5,8 @@
 - [ ] make OS dependencies
 -----------------------------------------------
 ### Windows
-- [ ] check installing of getgit
+- [ ] change "/" on "\"
+- [x] check installing of getgit
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows

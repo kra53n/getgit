@@ -6,21 +6,23 @@ from yaml import dump
 
 from sys import exit
 from sys import platform
-from os import makedirs
+from os import mkdir
 
 
 from pathlib import Path
 path_conf_file = str(Path.home())
-if platform == "linux":
-    path_conf_file += "/.config/getgit/config.yaml"
-if platform == "win32":
-    path_conf_file += r"\.config\getgit\config.yaml"
+#if platform == "linux":
+    #path_conf_file += "/.config/getgit/config.yaml"
+#if platform == "win32":
+    #path_conf_file += r"\.config\getgit\config.yaml"
+path_conf_file += r"\.config\getgit\config.yaml"
+print(path_conf_file)
 
 
 def create_file(path=path_conf_file):
     """Create file in define path
     """
-    makedirs(path[:-12])
+    mkdir(path[:-12])
     with open(path, "w") as f:
         f.write("service:\nnickname:")
 
