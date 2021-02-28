@@ -2,11 +2,8 @@
 ### PyPI
 - [ ] make installing of scripts from PyPI
 - [ ] make documentaion
-- [ ] make OS dependencies
 -----------------------------------------------
 ### Windows
-- [ ] change "/" on "\"
-- [x] check installing of getgit
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
@@ -14,6 +11,7 @@
 
 
 ## COMPLETE
+- [x] check installing of getgit
 - [x] solve exception if user have not any reps on his page
 - [x] solve exiting in program without any mistake
 - [x] fill setup.py
