@@ -75,7 +75,8 @@ class GnuLinux(Os):
 
 class Windows(Os):
     """Child of Os class
-    Cli interface for GnuLinux systems
+    Cli interface for Windows or OS that
+    not support `simple_term_menu`
     """
     def __init__(self):
         super().__init__()
