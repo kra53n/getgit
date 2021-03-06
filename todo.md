@@ -1,7 +1,5 @@
 ## TODO
-### PyPI
-- [x] make installing of scripts from PyPI
-- [ ] make documentaion
+
 -----------------------------------------------
 ### Windows
 - [ ] try to find interactives cli for Windows
@@ -11,6 +9,8 @@
 
 
 ## COMPLETE
+- [x] make installing of scripts from PyPI
+- [x] make documentaion
 - [x] check installing of getgit
 - [x] solve exception if user have not any reps on his page
 - [x] solve exiting in program without any mistake

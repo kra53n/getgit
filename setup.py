@@ -19,9 +19,10 @@ with open("README.md", "r") as fh:
 
 setup(
     name="getgit",
-    version="0.0.2",
+    version="0.1.0",
     description="Cloning repositories of user",
     long_description=long_description,
+    long_description_content_type='text/markdown',
     license="GPL3",
     packages=find_packages(),
     url="https://github.com/Krai53n/getgit",
