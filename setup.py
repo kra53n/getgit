@@ -14,10 +14,15 @@ if platform == "win32":
     )
 
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name="getgit",
-    version="0.0.1",
-    description="Clone repositories and give information about them",
+    version="0.0.2",
+    description="Cloning repositories of user",
+    long_description=long_description,
+    license="GPL3",
     packages=find_packages(),
     url="https://github.com/Krai53n/getgit",
     author="Gregory Bakhtin",

@@ -1,6 +1,6 @@
 ## TODO
 ### PyPI
-- [ ] make installing of scripts from PyPI
+- [x] make installing of scripts from PyPI
 - [ ] make documentaion
 -----------------------------------------------
 ### Windows
