@@ -1,4 +1,4 @@
-**Getgit** clone repositories of user
+**Getgit** terminal utility to clone repositories of user
 
 ## How to install
 
