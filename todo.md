@@ -6,6 +6,7 @@
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
 -----------------------------------------------
+- [ ] add feature to download all repositories
 
 
 ## COMPLETE
