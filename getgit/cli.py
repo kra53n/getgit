@@ -50,9 +50,6 @@ class Os:
         print(wishes)
 
 
-Os()
-
-
 class GnuLinux(Os):
     """Child of Os class
     Cli interface for GnuLinux systems
