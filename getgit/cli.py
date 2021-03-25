@@ -8,6 +8,7 @@ from getgit.core import github_parse_reps
 from getgit.core import clone_github_rep
 
 from sys import argv
+from sys import exit
 
 
 class Os:
@@ -38,6 +39,7 @@ class Os:
             name_reps = github_parse_reps(data_config["nickname"])
             for name in name_reps:
                 clone_github_rep(data_config["nickname"], name)
+        exit()
 
     def ask_git_version_service(self):
         txt = "Choose git service that you use:\n"
