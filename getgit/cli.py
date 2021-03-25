@@ -7,12 +7,16 @@ from getgit.config import load_data
 from getgit.core import github_parse_reps
 from getgit.core import clone_github_rep
 
+from sys import argv
+
 
 class Os:
     """This is parent class of other classes such as GnuLinux or Windows
     """
     def __init__(self):
         self.data = check_filling_of_data()
+        if self.data:
+            self.check_args()
 
     def introduce_program(self):
         txt = """
@@ -20,6 +24,20 @@ class Os:
         From people to people!
         """
         print(txt)
+
+    def check_args(self):
+        if "--all" in argv[1:]:
+            self.dl_all()
+
+    def dl_all(self):
+        """
+        Download all visible repositories of user
+        """
+        data_config = load_data()
+        if data_config["service"] == "github":
+            name_reps = github_parse_reps(data_config["nickname"])
+            for name in name_reps:
+                clone_github_rep(data_config["nickname"], name)
 
     def ask_git_version_service(self):
         txt = "Choose git service that you use:\n"
@@ -30,6 +48,9 @@ class Os:
         wishes = "\nEverything is ready! If you want change something "
         wishes += "just go to config/config.yaml and change there data"
         print(wishes)
+
+
+Os()
 
 
 class GnuLinux(Os):
