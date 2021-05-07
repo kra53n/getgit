@@ -1,5 +1,5 @@
 ## TODO
-
+- [ ] add to cli -n and --name [name of repository]
 -----------------------------------------------
 ### Windows
 - [ ] try to find interactives cli for Windows
