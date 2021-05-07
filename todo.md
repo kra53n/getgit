@@ -1,6 +1,8 @@
 ## TODO
 - [ ] load changes to pypi
 - [ ] think through the architecture
+- [ ] add help to cli
+- [ ] add usage to README.md 
 -----------------------------------------------
 ### Windows
 - [ ] try to find interactives cli for Windows
