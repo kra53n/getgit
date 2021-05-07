@@ -19,7 +19,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="getgit",
-    version="0.1.0",
+    version="0.1.1",
     description="Cloning repositories of user",
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -30,6 +30,22 @@ class Os:
         if "--all" in argv[1:]:
             self.dl_all()
 
+        if "--name" in argv[1:]:
+            repname = argv[argv.index("--name")+1]
+            self.dl_rep(repname)
+        if "-n" in argv[1:]:
+            repname = argv[argv.index("-n")+1]
+            self.dl_rep(repname)
+
+    def dl_rep(self, name):
+        """
+        Download repository that have `name` title of user
+        """
+        data_config = load_data()
+        if data_config["service"] == "github":
+            clone_github_rep(data_config["nickname"], name)
+        exit()
+
     def dl_all(self):
         """
         Download all visible repositories of user

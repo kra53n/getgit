@@ -1,5 +1,6 @@
 ## TODO
-- [ ] add to cli -n and --name [name of repository]
+- [ ] load changes to pypi
+- [ ] think through the architecture
 -----------------------------------------------
 ### Windows
 - [ ] try to find interactives cli for Windows
@@ -9,6 +10,7 @@
 
 
 ## COMPLETE
+- [x] add to cli -n and --name [name of repository]
 - [x] add feature to download all repositories
 - [x] make installing of scripts from PyPI
 - [x] make documentaion
