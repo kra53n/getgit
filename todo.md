@@ -1,4 +1,5 @@
 ## TODO
+- [ ] add notabug
 - [ ] load changes to pypi
 - [ ] think through the architecture
 - [ ] add help to cli
