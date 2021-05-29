@@ -1,5 +1,7 @@
 ## TODO
-- [ ] add notabug
+- [ ] make working with cli easy
+- [ ] remove other unnecessary piece of code
+- [ ] add changing of services
 - [ ] load changes to pypi
 - [ ] think through the architecture
 - [ ] add help to cli
@@ -10,9 +12,17 @@
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
 -----------------------------------------------
+### Solve
+```sh
+    mkdir(name, mode)
+FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
+```
+- [ ] solve FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
+-----------------------------------------------
 
 
 ## COMPLETE
+- [x] add notabug
 - [x] add to cli -n and --name [name of repository]
 - [x] add feature to download all repositories
 - [x] make installing of scripts from PyPI

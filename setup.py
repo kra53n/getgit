@@ -2,20 +2,14 @@ from setuptools import setup, find_packages
 
 
 from sys import platform
-requirements = ["bs4"]
+requirements = ["bs4", "pyyaml", "requests"]
 if platform == "linux":
     requirements.append("simple-term-menu")
-if platform == "win32":
-    requirements.extend(
-        [
-            "pyyaml",
-            "requests",
-        ]
-    )
 
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
+
 
 setup(
     name="getgit",

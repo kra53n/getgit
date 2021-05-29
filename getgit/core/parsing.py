@@ -46,7 +46,6 @@ def github_parse_reps(nickname):
     And return list of repositories`s name
     """
     url = "https://github.com/" + str(nickname) + "?tab=repositories"
-    html_doc = request_html(url)
     soup = load_soup(url)
 
     reps = []
@@ -55,4 +54,21 @@ def github_parse_reps(nickname):
         rep = rep.replace("\n", "")
         rep = rep.replace(" ", "")
         reps.append(rep)
+    return reps
+
+def notabug_parse_reps(nickname):
+    """
+    Catch repositories from Notabug page of user.
+    And return list of repositories`s name
+    """
+    url = "https://notabug.org/" + str(nickname)
+    soup = load_soup(url)
+
+    reps = []
+    for block in soup.find_all("a"):
+        try:
+            if "name" in block["class"]:
+                reps.append(block.string)
+        except KeyError:
+            continue
     return reps
