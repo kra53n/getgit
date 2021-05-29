@@ -21,13 +21,11 @@ def request_html(path):
         return False
     return html_doc.text
 
-
-def github_parse_reps(nickname):
-    '''Catch repositories from Github page of user.
-    And return list of repositories`s name
-    '''
-    path = "https://github.com/" + str(nickname) + "?tab=repositories"
-    html_doc = request_html(path)
+def load_soup(url):
+    """
+    Return soup(or exception)
+    """
+    html_doc = request_html(url)
     try:
         soup = BeautifulSoup(html_doc, "html.parser")
     except TypeError:
@@ -40,6 +38,15 @@ def github_parse_reps(nickname):
         message += " and change in config.yaml `nickname`"
         print(message)
         exit()
+    return soup
+
+def github_parse_reps(nickname):
+    """
+    Catch repositories from Github page of user.
+    And return list of repositories`s name
+    """
+    url = "https://github.com/" + str(nickname) + "?tab=repositories"
+    soup = load_soup(url)
 
     reps = []
     for tag in soup.find_all("h3"):
@@ -47,4 +54,21 @@ def github_parse_reps(nickname):
         rep = rep.replace("\n", "")
         rep = rep.replace(" ", "")
         reps.append(rep)
+    return reps
+
+def notabug_parse_reps(nickname):
+    """
+    Catch repositories from Notabug page of user.
+    And return list of repositories`s name
+    """
+    url = "https://notabug.org/" + str(nickname)
+    soup = load_soup(url)
+
+    reps = []
+    for block in soup.find_all("a"):
+        try:
+            if "name" in block["class"]:
+                reps.append(block.string)
+        except KeyError:
+            continue
     return reps

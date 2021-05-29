@@ -1,10 +1,12 @@
 """Cli interface for getgit"""
 
 from getgit.config import check_filling_of_data
-from getgit.config import put_data
 from getgit.config import load_data
+from getgit.config import put_data
 
+from getgit.core import notabug_parse_reps
 from getgit.core import github_parse_reps
+from getgit.core import clone_notabug_rep
 from getgit.core import clone_github_rep
 
 from sys import argv
@@ -12,7 +14,8 @@ from sys import exit
 
 
 class Os:
-    """This is parent class of other classes such as GnuLinux or Windows
+    """
+    This is parent class of other classes such as GnuLinux or Windows
     """
     def __init__(self):
         self.data = check_filling_of_data()
@@ -37,13 +40,15 @@ class Os:
             repname = argv[argv.index("-n")+1]
             self.dl_rep(repname)
 
-    def dl_rep(self, name):
+    def dl_rep(self, rep_name):
         """
         Download repository that have `name` title of user
         """
         data_config = load_data()
         if data_config["service"] == "github":
-            clone_github_rep(data_config["nickname"], name)
+            clone_github_rep(data_config["nickname"], rep_name)
+        if data_config["service"] == "notabug":
+            clone_notabug_rep(data_config["nickname"], rep_name)
         exit()
 
     def dl_all(self):
@@ -55,11 +60,15 @@ class Os:
             name_reps = github_parse_reps(data_config["nickname"])
             for name in name_reps:
                 clone_github_rep(data_config["nickname"], name)
+        if data_config["service"] == "notabug":
+            name_reps = notabug_parse_reps(data_config["nickname"])
+            for name in name_reps:
+                clone_notabug_rep(data_config["nickname"], name)
         exit()
 
     def ask_git_version_service(self):
         txt = "Choose git service that you use:\n"
-        gits = ("github", "gitlab")
+        gits = ("github", "gitlab", "notabug")
         return txt, gits
 
     def wishes(self):
@@ -90,6 +99,8 @@ class GnuLinux(Os):
             data_config = load_data()
             if data_config["service"] == "github":
                 menu_items = github_parse_reps(data_config["nickname"])
+            if data_config["service"] == "notabug":
+                menu_items = notabug_parse_reps(data_config["nickname"])
 
         terminal_menu = TerminalMenu(menu_entries=menu_items,
                                      title=menu_title,)
@@ -106,7 +117,7 @@ class GnuLinux(Os):
             if menu_entry_index != None:
                 # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
-                clone_github_rep(data_config["nickname"], rep_name)
+                self.dl_rep(rep_name)
 
 
 class Windows(Os):
