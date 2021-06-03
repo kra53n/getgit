@@ -4,9 +4,8 @@
 - [ ] remove other unnecessary piece of code
 - [ ] add changing of services
 - [ ] load changes to pypi
-- [ ] think through the architecture
 - [ ] add help to cli
-- [ ] add usage to README.md 
+- [ ] add 'Usage' to README.md 
 -----------------------------------------------
 ### Windows
 - [ ] try to find interactives cli for Windows
@@ -20,6 +19,8 @@ FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 ```
 - [ ] solve FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 -----------------------------------------------
+### Ideas
+- [ ] if repository already in cwd --> return message that repository already there
 
 
 ## COMPLETE
