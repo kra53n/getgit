@@ -1,4 +1,5 @@
 ## TODO
+- [ ] make location of config file in getgit/getgit dir
 - [ ] notabug for windows
 - [ ] make working with cli easy
 - [ ] remove other unnecessary piece of code
