@@ -3,14 +3,15 @@
 from requests import exceptions as requests_exceptions
 from requests import get as requests_get
 from bs4 import BeautifulSoup
-
+from pathlib import Path
 from sys import exit
 
 
 def request_html(path):
-    '''Check existing of page. If page not exist function
+    """
+    Check existing of page. If page not exist function
     return False
-    '''
+    """
     try:
         html_doc = requests_get(path)
     except requests_exceptions.ConnectionError:
@@ -21,6 +22,7 @@ def request_html(path):
         return False
     return html_doc.text
 
+
 def load_soup(url):
     """
     Return soup(or exception)
@@ -30,22 +32,21 @@ def load_soup(url):
         soup = BeautifulSoup(html_doc, "html.parser")
     except TypeError:
         '''If user have incorrect nickname'''
-        from pathlib import Path
-        home = str(Path.home())
-
-        message = "You put incorrect nickname, "
-        message += "go to {}/.config/getgit".format(home)
-        message += " and change in config.yaml `nickname`"
+        config_dir = Path.home() / ".config/getgit"
+        message = f"You put incorrect nickname, " \
+                  f"go to {config_dir}" \
+                  f" and change in config.yaml `nickname`"
         print(message)
         exit()
     return soup
 
-def github_parse_reps(nickname):
+
+def github_parse_reps(nickname: str):
     """
     Catch repositories from Github page of user.
     And return list of repositories`s name
     """
-    url = "https://github.com/" + str(nickname) + "?tab=repositories"
+    url = f"https://github.com/{nickname}?tab=repositories"
     soup = load_soup(url)
 
     reps = []
@@ -56,12 +57,13 @@ def github_parse_reps(nickname):
         reps.append(rep)
     return reps
 
+
 def notabug_parse_reps(nickname):
     """
     Catch repositories from Notabug page of user.
     And return list of repositories`s name
     """
-    url = "https://notabug.org/" + str(nickname)
+    url = f"https://notabug.org/{nickname}"
     soup = load_soup(url)
 
     reps = []

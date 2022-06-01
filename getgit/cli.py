@@ -1,16 +1,9 @@
 """Cli interface for getgit"""
 
-from getgit.config import check_filling_of_data
-from getgit.config import load_data
-from getgit.config import put_data
+from sys import argv, exit
 
-from getgit.core import notabug_parse_reps
-from getgit.core import github_parse_reps
-from getgit.core import clone_notabug_rep
-from getgit.core import clone_github_rep
-
-from sys import argv
-from sys import exit
+from getgit.config import check_filling_of_data, load_data, put_data
+from getgit.core import notabug_parse_reps, github_parse_reps, clone_notabug_rep, clone_github_rep
 
 
 class Os:
@@ -32,7 +25,6 @@ class Os:
     def check_args(self):
         if "--all" in argv[1:]:
             self.dl_all()
-
         if "--name" in argv[1:]:
             repname = argv[argv.index("--name")+1]
             self.dl_rep(repname)
@@ -45,10 +37,10 @@ class Os:
         Download repository that have `name` title of user
         """
         data_config = load_data()
-        if data_config["service"] == "github":
-            clone_github_rep(data_config["nickname"], rep_name)
-        if data_config["service"] == "notabug":
-            clone_notabug_rep(data_config["nickname"], rep_name)
+        service = data_config["service"]
+        args = data_config["nickname"], rep_name
+        switch = {service == "github": clone_github_rep, service == "notabug": clone_notabug_rep}
+        switch.get(True)(*args)
         exit()
 
     def dl_all(self):
@@ -151,8 +143,7 @@ class Windows(Os):
         services = self.ask_git_version_service()[1]
         for i in range(len(services)):
             print("\t{}. {}".format(i+1, services[i]))
-        service_num = input("\nChoose git version: ")
-        service_num = int(service_num)-1
+        service_num = int(input("\nChoose git version: ")) - 1
         return services[service_num]
 
     def choose_reps_cli(self, reps):
@@ -172,3 +163,7 @@ def main():
         Windows()
     if platform == "linux":
         GnuLinux()
+
+
+if __name__ == "__main__":
+    main()
