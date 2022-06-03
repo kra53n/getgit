@@ -2,7 +2,7 @@
 
 1. [ ] explore html files of git services
    1. [ ] github
-   2. [ ] botabug
+   2. [ ] notabug
    3. [ ] gitlab
 
 - [ ] try to now what find_packages doing

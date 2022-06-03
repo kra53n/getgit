@@ -1,6 +1,6 @@
 **Getgit** - terminal utility that allows to clone user repositories.
 
-`It allows to clone only public repositories because of using цуи parsing.`
+`It allows to clone only public repositories because of using web parsing.`
 
 
 ## How to install
