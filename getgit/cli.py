@@ -13,24 +13,24 @@ class Os:
     def __init__(self):
         self.data = check_filling_of_data()
         if self.data:
-            self.check_args()
+            self.process_args()
 
     def introduce_program(self):
         txt = """
-        Welocme to getgit! I Hope that you will enjoy this program!
-        From people to people!
+        Welocme to getgit! I hope this script will useful for you!
+        From people to people (^_−)☆.
         """
         print(txt)
 
-    def check_args(self):
+    def process_args(self):
         if "--all" in argv[1:]:
             self.dl_all()
         if "--name" in argv[1:]:
-            repname = argv[argv.index("--name")+1]
-            self.dl_rep(repname)
+            rep_name = argv[argv.index("--name")+1]
+            self.dl_rep(rep_name)
         if "-n" in argv[1:]:
-            repname = argv[argv.index("-n")+1]
-            self.dl_rep(repname)
+            rep_name = argv[argv.index("-n")+1]
+            self.dl_rep(rep_name)
 
     def dl_rep(self, rep_name):
         """
@@ -48,14 +48,12 @@ class Os:
         Download all visible repositories of user
         """
         data_config = load_data()
-        if data_config["service"] == "github":
-            name_reps = github_parse_reps(data_config["nickname"])
-            for name in name_reps:
-                clone_github_rep(data_config["nickname"], name)
-        if data_config["service"] == "notabug":
-            name_reps = notabug_parse_reps(data_config["nickname"])
-            for name in name_reps:
-                clone_notabug_rep(data_config["nickname"], name)
+        switch = {'github': (github_parse_reps, clone_github_rep), 'notabug': (notabug_parse_reps, clone_notabug_rep)}
+        for service, (parse_func, clone_func) in switch.items():
+            if data_config['service'] == service:
+                reps_names = parse_func(data_config['nickname'])
+                for rep_name in reps_names:
+                    clone_func(data_config['nickname'], rep_name)
         exit()
 
     def ask_git_version_service(self):
@@ -64,13 +62,12 @@ class Os:
         return txt, gits
 
     def wishes(self):
-        wishes = "\nEverything is ready! If you want change something "
-        wishes += "just go to config/config.yaml and change there data"
-        print(wishes)
+        print("\nEverything is ready! If you want change something "
+              "just go to config/config.yaml and change there data")
 
 
 class GnuLinux(Os):
-    """Child of Os class
+    """
     Cli interface for GnuLinux systems
     """
     def __init__(self):
@@ -79,14 +76,12 @@ class GnuLinux(Os):
         super().__init__()
 
         if self.data == 0:
-            """If user start this program for the first time
-            """
+            """If user start this program for the first time"""
             self.introduce_program()
             menu_title = self.ask_git_version_service()[0]
             menu_items = self.ask_git_version_service()[1]
         if self.data == 1:
-            """If user have the data in $HOME/.config/config.yaml
-            """
+            """If user have the data in $HOME/.config/config.yaml"""
             menu_title = "Choose repository to clone\n"
             data_config = load_data()
             if data_config["service"] == "github":
@@ -94,19 +89,16 @@ class GnuLinux(Os):
             if data_config["service"] == "notabug":
                 menu_items = notabug_parse_reps(data_config["nickname"])
 
-        terminal_menu = TerminalMenu(menu_entries=menu_items,
-                                     title=menu_title,)
+        terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
 
         if self.data == 0:
             git_service = self.ask_git_version_service()[1][menu_entry_index]
             nickname = input("Write you nickname: ")
-
             put_data(git_service, nickname)
-
             self.wishes()
         if self.data == 1:
-            if menu_entry_index != None:
+            if menu_entry_index is not None:
                 # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
                 self.dl_rep(rep_name)
@@ -120,8 +112,7 @@ class Windows(Os):
     def __init__(self):
         super().__init__()
         if self.data == 0:
-            """If user start this program for the first time
-            """
+            """If user start this program for the first time"""
             self.introduce_program()
             git_service = self.choose_git_version_service_cli()
             nickname = input("Write your nickname: ")
@@ -130,8 +121,7 @@ class Windows(Os):
             self.wishes()
 
         if self.data == 1:
-            """If user have the data in .config\config.yaml
-            """
+            """If user have the data in .config\config.yaml"""
             print("\tChoose repository to clone\n")
             data_config = load_data()
             if data_config["service"] == "github":
@@ -147,7 +137,8 @@ class Windows(Os):
         return services[service_num]
 
     def choose_reps_cli(self, reps):
-        """Allow user choose reps and return number of it
+        """
+        Allow user choose reps and return number of it.
         Reps have list type of data
         """
         for i in range(len(reps)):

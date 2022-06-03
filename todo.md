@@ -1,4 +1,11 @@
 ## TODO
+
+1. [ ] explore html files of git services
+   1. [ ] github
+   2. [ ] botabug
+   3. [ ] gitlab
+
+- [ ] try to now what find_packages doing
 - [ ] make location of config file in getgit/getgit dir
 - [ ] notabug for windows
 - [ ] make working with cli easy
@@ -6,21 +13,31 @@
 - [ ] add changing of services
 - [ ] load changes to pypi
 - [ ] add help to cli
-- [ ] add 'Usage' to README.md 
------------------------------------------------
+- [ ] add 'Usage' to README.md
+
+### Cli commands
+
+- change settings: `getgit (-n, --name) profile_name (-s, --service) serivce_name`
+- clone rep of user `getgit (-n, --name) profile_name (-s, --service) serivce_name (-r, --rep-name) rep_name`
+
+
 ### Windows
+
 - [ ] try to find interactives cli for Windows
 - [ ] make exiting on Windows
 - [ ] try using curses in Windows
------------------------------------------------
+
+
 ### Solve
+
 ```sh
     mkdir(name, mode)
 FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 ```
 - [ ] solve FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
------------------------------------------------
+
 ### Ideas
+
 - [ ] if repository already in cwd --> return message that repository already there
 
 

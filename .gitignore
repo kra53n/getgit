@@ -1,2 +1,7 @@
 __pycache__/
+getgit.egg-info/
+build/
+dist/
+
 .idea/
+venv/

@@ -1,13 +1,13 @@
 **Getgit** - terminal utility that allows to clone user repositories.
 
-`It allows to clone only public repositories because of using parsing.`
+`It allows to clone only public repositories because of using цуи parsing.`
 
 
 ## How to install
 
 ### First way
-1. Install Python3.
 
+1. Install Python3.
 2. Install Getgit with the following `pip` command from the command prompt:
 
 ```sh
