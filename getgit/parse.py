@@ -31,7 +31,7 @@ def load_soup(url):
     try:
         soup = BeautifulSoup(html_doc, "html.parser")
     except TypeError:
-        '''If user have incorrect nickname'''
+        # if user have incorrect nickname
         config_dir = Path.home() / ".config/getgit"
         message = f"You put incorrect nickname, " \
                   f"go to {config_dir}" \

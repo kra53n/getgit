@@ -1,9 +1,9 @@
 """wwyaml - work with yaml"""
 
 from yaml import load, FullLoader, dump
-from sys import exit
 from pathlib import Path
 from os import makedirs
+from sys import exit
 
 
 path_conf_file = str(Path.home() / ".config/getgit/config.yaml")
@@ -20,8 +20,7 @@ def load_data(path=path_conf_file):
     """Return data from config.yaml"""
     try:
         with open(path) as f:
-            data = load(f, Loader=FullLoader)
-        return data
+            return load(f, Loader=FullLoader)
     except FileNotFoundError:
         create_file()
 

@@ -1,22 +1,11 @@
 ## TODO
 
-1. [ ] explore html files of git services
-   1. [ ] github
-   2. [ ] notabug
-   3. [ ] gitlab
-
-- [ ] try to now what find_packages doing
-- [ ] make location of config file in getgit/getgit dir
-- [ ] notabug for windows
-- [ ] make working with cli easy
-- [ ] remove other unnecessary piece of code
-- [ ] add changing of services
-- [ ] load changes to pypi
-- [ ] add help to cli
+- [ ] make yaml file for service cloning configuration
 - [ ] add 'Usage' to README.md
 
 ### Cli commands
 
+- cli helper
 - change settings: `getgit (-n, --name) profile_name (-s, --service) serivce_name`
 - clone rep of user `getgit (-n, --name) profile_name (-s, --service) serivce_name (-r, --rep-name) rep_name`
 
@@ -42,6 +31,11 @@ FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 
 
 ## COMPLETE
+- [x] explore html files of git services
+  - [x] github
+  - [x] notabug
+  - [x] gitlab
+- [x] remove other unnecessary piece of code
 - [x] add notabug
 - [x] add to cli -n and --name (name of repository)
 - [x] add feature to download all repositories

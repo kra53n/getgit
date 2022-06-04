@@ -2,8 +2,9 @@
 
 from sys import argv, exit
 
-from getgit.config import check_filling_of_data, load_data, put_data
-from getgit.core import notabug_parse_reps, github_parse_reps, clone_notabug_rep, clone_github_rep
+from wwyaml import check_filling_of_data, load_data, put_data
+from parse import notabug_parse_reps, github_parse_reps
+from clone import clone_notabug_rep, clone_github_rep
 
 
 class Os:
@@ -72,7 +73,6 @@ class GnuLinux(Os):
     """
     def __init__(self):
         from simple_term_menu import TerminalMenu
-
         super().__init__()
 
         if self.data == 0:
@@ -84,10 +84,10 @@ class GnuLinux(Os):
             """If user have the data in $HOME/.config/config.yaml"""
             menu_title = "Choose repository to clone\n"
             data_config = load_data()
-            if data_config["service"] == "github":
-                menu_items = github_parse_reps(data_config["nickname"])
-            if data_config["service"] == "notabug":
-                menu_items = notabug_parse_reps(data_config["nickname"])
+            switch = {"github": github_parse_reps, "notabut": notabug_parse_reps}
+            for service, parse_func in switch.items():
+                if data_config["service"] == service:
+                    parse_func(data_config["nickname"])
 
         terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
