@@ -1,0 +1,5 @@
+github:
+  tag: 'a'
+  url: 'https://github.com/nickname?tab=repositories'
+  attrs:
+    itemprop: 'name codeRepository'

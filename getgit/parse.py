@@ -1,10 +1,19 @@
-# parse web information
-
 from requests import exceptions as requests_exceptions
 from requests import get as requests_get
+from yaml import safe_load as yaml_load
 from bs4 import BeautifulSoup
 from pathlib import Path
 from sys import exit
+
+from constants import CONFIG_DIR, CONFIG_PARSE_PATH
+
+
+def get_config_data(path: Path) -> dict:
+    return yaml_load(path.read_text())
+
+
+def get_url(service: str, nickname: str) -> str:
+    return get_config_data(CONFIG_PARSE_PATH)[service]['url'].replace('nickname', nickname)
 
 
 def request_html(path):
@@ -23,7 +32,7 @@ def request_html(path):
     return html_doc.text
 
 
-def load_soup(url):
+def get_soup(url):
     """
     Return soup(or exception)
     """
@@ -32,45 +41,35 @@ def load_soup(url):
         soup = BeautifulSoup(html_doc, "html.parser")
     except TypeError:
         # if user have incorrect nickname
-        config_dir = Path.home() / ".config/getgit"
         message = f"You put incorrect nickname, " \
-                  f"go to {config_dir}" \
+                  f"go to {CONFIG_DIR}" \
                   f" and change in config.yaml `nickname`"
         print(message)
         exit()
     return soup
 
 
-def github_parse_reps(nickname: str):
-    """
-    Catch repositories from Github page of user.
-    And return list of repositories`s name
-    """
-    url = f"https://github.com/{nickname}?tab=repositories"
-    soup = load_soup(url)
+def parse_reps(service: str, path: str) -> list | None:
+    data = get_config_data(CONFIG_PARSE_PATH)[service]
 
-    reps = []
-    for tag in soup.find_all("h3"):
-        rep = tag.find("a").string
-        rep = rep.replace("\n", "")
-        rep = rep.replace(" ", "")
-        reps.append(rep)
-    return reps
+    if 'attrs' not in data.keys():
+        return
+
+    tags = get_soup(path).find_all(data['tag'])
+    rep_names = []
+
+    for tag in tags:
+        if 'attrs' in data.keys():
+            for key, value in data['attrs'].items():
+                if not (key in tag.attrs and tag.attrs[key] == value):
+                    break
+            else:
+                rep_names.append(tag.string.replace('\n', '').lstrip())
+
+    return rep_names
 
 
-def notabug_parse_reps(nickname):
-    """
-    Catch repositories from Notabug page of user.
-    And return list of repositories`s name
-    """
-    url = f"https://notabug.org/{nickname}"
-    soup = load_soup(url)
+if __name__ == '__main__':
+    # a[0].attrs
+    print(parse_reps('github', 'https://github.com/kra53n?tab=repositories'))
 
-    reps = []
-    for block in soup.find_all("a"):
-        try:
-            if "name" in block["class"]:
-                reps.append(block.string)
-        except KeyError:
-            continue
-    return reps

@@ -39,7 +39,7 @@ def check_filling_of_data(path=path_conf_file):
     """
     data = load_data(path)
     try:
-        return not all(map(lambda x: x == None, (data["service"], data["nickname"])))
+        return not all(map(lambda x: x is None, (data["service"], data["nickname"])))
     except TypeError:
         print(f"Config file was add in {path_conf_file} as config.yaml")
         exit()

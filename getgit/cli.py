@@ -3,7 +3,7 @@
 from sys import argv, exit
 
 from wwyaml import check_filling_of_data, load_data, put_data
-from parse import notabug_parse_reps, github_parse_reps
+from parse import parse_reps, get_url
 from clone import clone_notabug_rep, clone_github_rep
 
 
@@ -11,6 +11,7 @@ class Os:
     """
     This is parent class of other classes such as GnuLinux or Windows
     """
+
     def __init__(self):
         self.data = check_filling_of_data()
         if self.data:
@@ -27,10 +28,10 @@ class Os:
         if "--all" in argv[1:]:
             self.dl_all()
         if "--name" in argv[1:]:
-            rep_name = argv[argv.index("--name")+1]
+            rep_name = argv[argv.index("--name") + 1]
             self.dl_rep(rep_name)
         if "-n" in argv[1:]:
-            rep_name = argv[argv.index("-n")+1]
+            rep_name = argv[argv.index("-n") + 1]
             self.dl_rep(rep_name)
 
     def dl_rep(self, rep_name):
@@ -49,12 +50,11 @@ class Os:
         Download all visible repositories of user
         """
         data_config = load_data()
-        switch = {'github': (github_parse_reps, clone_github_rep), 'notabug': (notabug_parse_reps, clone_notabug_rep)}
-        for service, (parse_func, clone_func) in switch.items():
-            if data_config['service'] == service:
-                reps_names = parse_func(data_config['nickname'])
-                for rep_name in reps_names:
-                    clone_func(data_config['nickname'], rep_name)
+        reps_names = parse_reps(data_config['service'], 'https://github.com/kra53n?tab=repositories')
+        switch = {'github': clone_github_rep, 'notabug': clone_notabug_rep}
+        for rep_name in reps_names:
+            switch[data_config['service']](data_config['nickname'], rep_name)
+            # clone_func(data_config['nickname'], rep_name)
         exit()
 
     def ask_git_version_service(self):
@@ -71,6 +71,7 @@ class GnuLinux(Os):
     """
     Cli interface for GnuLinux systems
     """
+
     def __init__(self):
         from simple_term_menu import TerminalMenu
         super().__init__()
@@ -84,10 +85,7 @@ class GnuLinux(Os):
             """If user have the data in $HOME/.config/config.yaml"""
             menu_title = "Choose repository to clone\n"
             data_config = load_data()
-            switch = {"github": github_parse_reps, "notabut": notabug_parse_reps}
-            for service, parse_func in switch.items():
-                if data_config["service"] == service:
-                    parse_func(data_config["nickname"])
+            parse_reps(data_config['nickname'], get_url(data_config['service'], data_config['nickname']))
 
         terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
@@ -109,6 +107,7 @@ class Windows(Os):
     Cli interface for Windows or OS that
     not support `simple_term_menu`
     """
+
     def __init__(self):
         super().__init__()
         if self.data == 0:
@@ -124,15 +123,15 @@ class Windows(Os):
             """If user have the data in .config\config.yaml"""
             print("\tChoose repository to clone\n")
             data_config = load_data()
-            if data_config["service"] == "github":
-                reps = github_parse_reps(data_config["nickname"])
-            rep_name = self.choose_reps_cli(reps)
+            rep_name = self.choose_reps_cli(
+                parse_reps(data_config['service'], get_url(data_config['service'], data_config['nickname']))
+            )
             clone_github_rep(data_config["nickname"], rep_name)
 
     def choose_git_version_service_cli(self):
         services = self.ask_git_version_service()[1]
         for i in range(len(services)):
-            print("\t{}. {}".format(i+1, services[i]))
+            print("\t{}. {}".format(i + 1, services[i]))
         service_num = int(input("\nChoose git version: ")) - 1
         return services[service_num]
 
@@ -142,9 +141,9 @@ class Windows(Os):
         Reps have list type of data
         """
         for i in range(len(reps)):
-            print("\t{}. {}".format(i+1, reps[i]))
+            print("\t{}. {}".format(i + 1, reps[i]))
         reps_num = input("\nChoose rep: ")
-        reps_num = int(reps_num)-1
+        reps_num = int(reps_num) - 1
         return reps[reps_num]
 
 

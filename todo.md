@@ -1,6 +1,6 @@
 ## TODO
 
-- [ ] make yaml file for service cloning configuration
+- [ ] put outside some functions in classes
 - [ ] add 'Usage' to README.md
 
 ### Cli commands
@@ -31,6 +31,7 @@ FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 
 
 ## COMPLETE
+- [x] make yaml file for service cloning configuration
 - [x] explore html files of git services
   - [x] github
   - [x] notabug
