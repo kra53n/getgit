@@ -17,7 +17,7 @@ def create_file(path=path_conf_file):
 
 
 def load_data(path=path_conf_file):
-    """Return parsed data from config.yaml"""
+    """Return data from config.yaml"""
     try:
         with open(path) as f:
             data = load(f, Loader=FullLoader)
