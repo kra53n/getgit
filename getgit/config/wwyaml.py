@@ -35,7 +35,7 @@ def put_data(service, nickname, path=path_conf_file):
 
 def check_filling_of_data(path=path_conf_file):
     """
-    If service and nickname in config.yaml exist then return 1.
+    Return 1 if service and nickname in config.yaml exist.  
     Otherwise return 0.
     """
     data = load_data(path)
