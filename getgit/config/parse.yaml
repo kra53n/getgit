@@ -1,5 +1,14 @@
 github:
   tag: 'a'
   url: 'https://github.com/nickname?tab=repositories'
+  rep: 'git@github.com:nickname/rep_name.git'
   attrs:
     itemprop: 'name codeRepository'
+
+notabug:
+  tag: 'a'
+  url: 'https://notabug.org/nickname'
+  rep: 'https://notabug.org/nickname/rep_name'
+  attrs:
+    class:
+      - 'name'

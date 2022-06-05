@@ -54,7 +54,6 @@ class Os:
         switch = {'github': clone_github_rep, 'notabug': clone_notabug_rep}
         for rep_name in reps_names:
             switch[data_config['service']](data_config['nickname'], rep_name)
-            # clone_func(data_config['nickname'], rep_name)
         exit()
 
     def ask_git_version_service(self):
