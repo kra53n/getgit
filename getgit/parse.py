@@ -67,9 +67,3 @@ def parse_reps(service: str, path: str) -> list | None:
                 rep_names.append(tag.string.replace('\n', '').lstrip())
 
     return rep_names
-
-
-if __name__ == '__main__':
-    # a[0].attrs
-    print(parse_reps('github', 'https://github.com/kra53n?tab=repositories'))
-
