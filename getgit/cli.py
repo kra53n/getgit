@@ -85,7 +85,7 @@ class GnuLinux(Os):
             """If user have the data in $HOME/.config/config.yaml"""
             menu_title = "Choose repository to clone\n"
             data_config = load_data()
-            parse_reps(data_config['nickname'], get_url(data_config['service'], data_config['nickname']))
+            menu_items = parse_reps(data_config['service'], get_url(data_config['service'], data_config['nickname']))
 
         terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
