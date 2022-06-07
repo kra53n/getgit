@@ -12,18 +12,9 @@
 
 ### Windows
 
-- [ ] try to find interactives cli for Windows
+- [ ] try to find interactive cli for Windows
 - [ ] make exiting on Windows
-- [ ] try using curses in Windows
 
-
-### Solve
-
-```sh
-    mkdir(name, mode)
-FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
-```
-- [ ] solve FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 
 ### Ideas
 
@@ -31,6 +22,7 @@ FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 
 
 ## COMPLETE
+- [x] solve FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 - [x] make yaml file for service cloning configuration
 - [x] explore html files of git services
   - [x] github

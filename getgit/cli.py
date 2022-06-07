@@ -3,8 +3,9 @@
 from sys import argv, exit
 
 from wwyaml import check_filling_of_data, load_data, put_data
-from parse import parse_reps, get_url
 from clone import clone_notabug_rep, clone_github_rep
+from parse import parse_reps, get_url
+from constants import CONFIG_DIR
 
 
 class Os:
@@ -62,8 +63,8 @@ class Os:
         return txt, gits
 
     def wishes(self):
-        print("\nEverything is ready! If you want change something "
-              "just go to config/config.yaml and change there data")
+        print(f"\nEverything is ready! If you want change something "
+              f"just go to {CONFIG_DIR} and change there data")
 
 
 class GnuLinux(Os):
