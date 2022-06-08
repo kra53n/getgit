@@ -3,12 +3,6 @@
 - [ ] put outside some functions in classes
 - [ ] add 'Usage' to README.md
 
-### Cli commands
-
-- cli helper
-- change settings: `getgit (-n, --name) profile_name (-s, --service) serivce_name`
-- clone rep of user `getgit (-n, --name) profile_name (-s, --service) serivce_name (-r, --rep-name) rep_name`
-
 
 ### Windows
 
@@ -22,6 +16,9 @@
 
 
 ## COMPLETE
+- [x] cli helper
+- [x] change settings: `getgit (-n, --name) profile_name (-s, --service) serivce_name`
+- [x] clone rep of user `getgit (-n, --name) profile_name (-s, --service) serivce_name (-r, --rep-name) rep_name`
 - [x] solve FileExistsError: [Errno 17] File exists: '/home/kra53n/.config/getgit'''])
 - [x] make yaml file for service cloning configuration
 - [x] explore html files of git services

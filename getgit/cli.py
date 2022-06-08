@@ -147,7 +147,7 @@ class Windows(Os):
         return reps[reps_num]
 
 
-def main():
+def cli():
     from sys import platform
     if platform == "win32":
         Windows()
@@ -156,4 +156,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    cli()

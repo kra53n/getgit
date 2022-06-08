@@ -8,12 +8,12 @@ from sys import exit
 from constants import CONFIG_DIR, CONFIG_PARSE_PATH
 
 
-def get_config_data(path: Path) -> dict:
+def get_config_data(path: Path = CONFIG_PARSE_PATH) -> dict:
     return yaml_load(path.read_text())
 
 
 def get_url(service: str, nickname: str) -> str:
-    return get_config_data(CONFIG_PARSE_PATH)[service]['url'].replace('nickname', nickname)
+    return get_config_data()[service]['url'].replace('nickname', nickname)
 
 
 def request_html(path):
@@ -50,6 +50,10 @@ def get_soup(url):
 
 
 def parse_reps(service: str, path: str) -> list | None:
+    """
+    service - git service name
+    path - url path with git repositories
+    """
     data = get_config_data(CONFIG_PARSE_PATH)[service]
 
     if 'attrs' not in data.keys():

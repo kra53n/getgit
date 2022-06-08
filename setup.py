@@ -1,14 +1,17 @@
 from setuptools import setup
 from sys import platform
 
+from getgit.constants import PROG_NAME, PROG_VERS
+
 
 requirements = ["bs4", "pyyaml", "requests"]
 if platform == "linux":
     requirements.append("simple-term-menu")
 
+
 setup(
-    name="getgit",
-    version="0.1.1",
+    name=PROG_NAME,
+    version=PROG_VERS,
     description="Cloning repositories of user",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -23,6 +26,6 @@ setup(
     ],
     entry_points={
         "console_scripts":
-            ["getgit = getgit.cli:main"]
+            ["getgit = getgit.main:main"]
     }
 )
