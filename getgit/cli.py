@@ -8,79 +8,70 @@ from parse import parse_reps, get_url
 from constants import CONFIG_DIR
 
 
+def introduce_program():
+    txt = """
+    Welcome to getgit! I hope this script will useful for you!
+    From people to people (^_−)☆.
+    """
+    print(txt)
+
+
+def dl_rep(rep_name):
+    """
+    Download repository that have `name` title of user
+    """
+    data_config = load_data()
+    service = data_config["service"]
+    args = data_config["nickname"], rep_name
+    switch = {service == "github": clone_github_rep, service == "notabug": clone_notabug_rep}
+    switch.get(True)(*args)
+    exit()
+
+
+def dl_all():
+    """
+    Download all visible repositories of user
+    """
+    data_config = load_data()
+    reps_names = parse_reps(data_config['service'], 'https://github.com/kra53n?tab=repositories')
+    switch = {'github': clone_github_rep, 'notabug': clone_notabug_rep}
+    for rep_name in reps_names:
+        switch[data_config['service']](data_config['nickname'], rep_name)
+    exit()
+
+
+def ask_git_version_service():
+    txt = "Choose git service that you use:\n"
+    gits = ("github", "gitlab", "notabug")
+    return txt, gits
+
+
+def wishes():
+    print(f"\nEverything is ready! If you want change something "
+          f"just go to {CONFIG_DIR} and change there data")
+
+
 class Os:
     """
     This is parent class of other classes such as GnuLinux or Windows
     """
-
     def __init__(self):
         self.data = check_filling_of_data()
-        if self.data:
-            self.process_args()
-
-    def introduce_program(self):
-        txt = """
-        Welocme to getgit! I hope this script will useful for you!
-        From people to people (^_−)☆.
-        """
-        print(txt)
-
-    def process_args(self):
-        if "--all" in argv[1:]:
-            self.dl_all()
-        if "--name" in argv[1:]:
-            rep_name = argv[argv.index("--name") + 1]
-            self.dl_rep(rep_name)
-        if "-n" in argv[1:]:
-            rep_name = argv[argv.index("-n") + 1]
-            self.dl_rep(rep_name)
-
-    def dl_rep(self, rep_name):
-        """
-        Download repository that have `name` title of user
-        """
-        data_config = load_data()
-        service = data_config["service"]
-        args = data_config["nickname"], rep_name
-        switch = {service == "github": clone_github_rep, service == "notabug": clone_notabug_rep}
-        switch.get(True)(*args)
-        exit()
-
-    def dl_all(self):
-        """
-        Download all visible repositories of user
-        """
-        data_config = load_data()
-        reps_names = parse_reps(data_config['service'], 'https://github.com/kra53n?tab=repositories')
-        switch = {'github': clone_github_rep, 'notabug': clone_notabug_rep}
-        for rep_name in reps_names:
-            switch[data_config['service']](data_config['nickname'], rep_name)
-        exit()
-
-    def ask_git_version_service(self):
-        txt = "Choose git service that you use:\n"
-        gits = ("github", "gitlab", "notabug")
-        return txt, gits
-
-    def wishes(self):
-        print(f"\nEverything is ready! If you want change something "
-              f"just go to {CONFIG_DIR} and change there data")
 
 
 class GnuLinux(Os):
     """
     Cli interface for GnuLinux systems
     """
-
     def __init__(self):
         from simple_term_menu import TerminalMenu
         super().__init__()
 
         if self.data == 0:
             """If user start this program for the first time"""
-            self.introduce_program()
-            menu_title = self.ask_git_version_service()[0]
-            menu_items = self.ask_git_version_service()[1]
+            introduce_program()
+            menu_title = ask_git_version_service()[0]
+            menu_items = ask_git_version_service()[1]
         if self.data == 1:
             """If user have the data in $HOME/.config/config.yaml"""
             menu_title = "Choose repository to clone\n"
@@ -91,15 +82,15 @@ class GnuLinux(Os):
         menu_entry_index = terminal_menu.show()
 
         if self.data == 0:
-            git_service = self.ask_git_version_service()[1][menu_entry_index]
+            git_service = ask_git_version_service()[1][menu_entry_index]
             nickname = input("Write you nickname: ")
             put_data(git_service, nickname)
-            self.wishes()
+            wishes()
         if self.data == 1:
             if menu_entry_index is not None:
                 # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
-                self.dl_rep(rep_name)
+                dl_rep(rep_name)
 
 
 class Windows(Os):
@@ -107,17 +98,16 @@ class Windows(Os):
     Cli interface for Windows or OS that
     not support `simple_term_menu`
     """
-
     def __init__(self):
         super().__init__()
         if self.data == 0:
             """If user start this program for the first time"""
-            self.introduce_program()
+            introduce_program()
             git_service = self.choose_git_version_service_cli()
             nickname = input("Write your nickname: ")
 
             put_data(git_service, nickname)
-            self.wishes()
+            wishes()
 
         if self.data == 1:
             """If user have the data in .config\config.yaml"""
@@ -129,7 +119,7 @@ class Windows(Os):
             clone_github_rep(data_config["nickname"], rep_name)
 
     def choose_git_version_service_cli(self):
-        services = self.ask_git_version_service()[1]
+        services = ask_git_version_service()[1]
         for i in range(len(services)):
             print("\t{}. {}".format(i + 1, services[i]))
         service_num = int(input("\nChoose git version: ")) - 1
