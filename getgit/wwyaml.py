@@ -6,7 +6,7 @@ from os import makedirs
 import os.path
 from sys import exit
 
-from constants import CONFIG_DIR
+from .constants import CONFIG_DIR
 
 
 def create_file(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):

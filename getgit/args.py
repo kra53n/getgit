@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from constants import PROG_NAME
+from .constants import PROG_NAME
 
 
 args = ArgumentParser(prog=PROG_NAME)

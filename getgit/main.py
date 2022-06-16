@@ -1,8 +1,8 @@
-from args import args
-from cli import cli
-from clone import clone_rep
-from wwyaml import put_data
-from parse import get_config_data
+from .args import args
+from .cli import cli
+from .clone import clone_rep
+from .wwyaml import put_data
+from .parse import get_config_data
 
 
 def main():
