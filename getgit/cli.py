@@ -143,7 +143,3 @@ def cli():
         Windows()
     if platform == "linux":
         GnuLinux()
-
-
-if __name__ == "__main__":
-    cli()
