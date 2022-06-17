@@ -37,7 +37,7 @@ Run cli:
 getgit
 ```
 
-Clone repository of user in configuration
+Clone repository of user that setted configuration file
 ```
 getgit -r rep_name
 ```
