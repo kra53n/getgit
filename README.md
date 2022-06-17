@@ -1,3 +1,5 @@
+## Getgit
+
 **Getgit** - terminal utility that allows to clone user repositories.
 
 `It allows to clone only public repositories because of using web parsing.`
@@ -30,4 +32,22 @@ python setup.py install_scripts
 
 ## How to use it
 
-I will add it soon.
+Run cli:
+```
+getgit
+```
+
+Clone repository of user in configuration
+```
+getgit -r rep_name
+```
+
+Change settings in configuration file:
+```
+getgit -s service_name -n nick_name
+```
+
+Clone repository of some user:
+```
+getgit -s service_name -n nick_name -r rep_name
+```
