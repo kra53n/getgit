@@ -1,5 +1,5 @@
 from os import system
-from parse import get_config_data
+from .parse import get_config_data
 
 
 def clone_github_rep(nickname, rep_name):

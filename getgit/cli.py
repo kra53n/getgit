@@ -2,10 +2,10 @@
 
 from sys import argv, exit
 
-from wwyaml import check_filling_of_data, load_data, put_data
-from clone import clone_notabug_rep, clone_github_rep
-from parse import parse_reps, get_url
-from constants import CONFIG_DIR
+from .wwyaml import check_filling_of_data, load_data, put_data
+from .clone import clone_notabug_rep, clone_github_rep
+from .parse import parse_reps, get_url
+from .constants import CONFIG_DIR
 
 
 def introduce_program():
@@ -143,7 +143,3 @@ def cli():
         Windows()
     if platform == "linux":
         GnuLinux()
-
-
-if __name__ == "__main__":
-    cli()

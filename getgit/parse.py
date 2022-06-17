@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 from sys import exit
 
-from constants import CONFIG_DIR, CONFIG_PARSE_PATH
+from .constants import CONFIG_DIR, CONFIG_PARSE_PATH
 
 
 def get_config_data(path: Path = CONFIG_PARSE_PATH) -> dict:
