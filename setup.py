@@ -24,6 +24,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX :: Linux",
     ],
+    packages=['getgit'],
     package_data={
         '': [
             'config\*.yaml',
