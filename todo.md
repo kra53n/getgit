@@ -2,6 +2,7 @@
 
 - [ ] put outside some functions in classes
 - [ ] add 'Usage' to README.md
+- [ ] port selecting
 
 
 ### Windows
@@ -16,6 +17,7 @@
 
 
 ## COMPLETE
+
 - [x] cli helper
 - [x] change settings: `getgit (-n, --name) profile_name (-s, --service) serivce_name`
 - [x] clone rep of user `getgit (-n, --name) profile_name (-s, --service) serivce_name (-r, --rep-name) rep_name`

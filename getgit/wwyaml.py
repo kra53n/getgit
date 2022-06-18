@@ -26,11 +26,11 @@ def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
         create_file()
 
 
-def put_data(service, nickname, path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
+def put_data(service, nickname, path: Path = CONFIG_DIR, port: str = '',
+        filename: str = 'config.yaml'):
     """Put service(github, gitlab, ...) and nickname in config.yaml"""
-    data = {"service": service, "nickname": nickname}
     with open(path / filename, "w") as f:
-        dump(data, f)
+        dump({'service': service, 'nickname': nickname, 'port': port}, f)
 
 
 def check_filling_of_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
