@@ -2,29 +2,23 @@
 
 from sys import argv, exit
 
-from .wwyaml import check_filling_of_data, load_data, put_data
-from .clone import clone_notabug_rep, clone_github_rep
-from .parse import parse_reps, get_url
+from .clone import clone_rep
 from .constants import CONFIG_DIR
+from .parse import parse_reps, get_url
+from .wwyaml import check_filling_of_data, load_data, put_data
 
 
 def introduce_program():
-    txt = """
+    print('''
     Welcome to getgit! I hope this script will useful for you!
     From people to people (^_−)☆.
-    """
-    print(txt)
+    '''
+    )
 
 
 def dl_rep(rep_name):
-    """
-    Download repository that have `name` title of user
-    """
     data_config = load_data()
-    service = data_config["service"]
-    args = data_config["nickname"], rep_name
-    switch = {service == "github": clone_github_rep, service == "notabug": clone_notabug_rep}
-    switch.get(True)(*args)
+    clone_rep(data_config['service'], data_config['nickname'], rep_name)
     exit()
 
 
@@ -33,16 +27,15 @@ def dl_all():
     Download all visible repositories of user
     """
     data_config = load_data()
-    reps_names = parse_reps(data_config['service'], 'https://github.com/kra53n?tab=repositories')
-    switch = {'github': clone_github_rep, 'notabug': clone_notabug_rep}
+    reps_names = parse_reps(data_config['service'], get_url(data_config['service'], data_config['nickname']))
     for rep_name in reps_names:
-        switch[data_config['service']](data_config['nickname'], rep_name)
+        clone_rep(data_config['service'], data_config['nickname'], rep_name)
     exit()
 
 
 def ask_git_version_service():
     txt = "Choose git service that you use:\n"
-    gits = ("github", "gitlab", "notabug")
+    gits = "github", "gitlab", "notabug"
     return txt, gits
 
 
@@ -116,7 +109,7 @@ class Windows(Os):
             rep_name = self.choose_reps_cli(
                 parse_reps(data_config['service'], get_url(data_config['service'], data_config['nickname']))
             )
-            clone_github_rep(data_config["nickname"], rep_name)
+            clone_rep(data_config['service'], data_config['nickname'], rep_name)
 
     def choose_git_version_service_cli(self):
         services = ask_git_version_service()[1]
