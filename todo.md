@@ -2,7 +2,7 @@
 
 - [ ] put outside some functions in classes
 - [ ] add 'Usage' to README.md
-- [ ] port selecting
+- [ ] port selecting by parameter, by cli menu
 
 
 ### Windows
