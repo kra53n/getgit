@@ -34,6 +34,7 @@ def dl_all():
 
 
 def ask_git_version_service():
+    # NOTE: delete this func and use parse.yaml
     txt = "Choose git service that you use:\n"
     gits = "github", "gitlab", "notabug"
     return txt, gits
@@ -96,38 +97,29 @@ class Windows(Os):
         if self.data == 0:
             """If user start this program for the first time"""
             introduce_program()
-            git_service = self.choose_git_version_service_cli()
+            git_service = self._select_option('Choose git version: ', ask_git_version_service()[1])
             nickname = input("Write your nickname: ")
 
             put_data(git_service, nickname)
             wishes()
 
         if self.data == 1:
-            """If user have the data in .config\config.yaml"""
+            """If user have the data in .config/config.yaml"""
             print("\tChoose repository to clone\n")
             data_config = load_data()
-            rep_name = self.choose_reps_cli(
-                parse_reps(data_config['service'], get_url(data_config['service'], data_config['nickname']))
+            rep_name = self._select_option(
+                'Choose repository: ',
+                parse_reps(data_config['service'], get_url(data_config['service'], data_config['nickname'])),
             )
             clone_rep(data_config['service'], data_config['nickname'], rep_name)
 
-    def choose_git_version_service_cli(self):
-        services = ask_git_version_service()[1]
-        for i in range(len(services)):
-            print("\t{}. {}".format(i + 1, services[i]))
-        service_num = int(input("\nChoose git version: ")) - 1
-        return services[service_num]
-
-    def choose_reps_cli(self, reps):
-        """
-        Allow user choose reps and return number of it.
-        Reps have list type of data
-        """
-        for i in range(len(reps)):
-            print("\t{}. {}".format(i + 1, reps[i]))
-        reps_num = input("\nChoose rep: ")
-        reps_num = int(reps_num) - 1
-        return reps[reps_num]
+    def _select_option(self, title: str, opts: list) -> int:
+        for idx, opt in enumerate(opts, 1):
+            print(f'\t{idx}. {opt}')
+        print()
+        while not (idx := input(title)).isdigit() or not 1 <= int(idx) <= len(opt):
+            print(f'Put digit from {1} to {len(opt)}')
+        return opts[int(idx)-1]
 
 
 def cli():

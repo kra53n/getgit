@@ -17,7 +17,7 @@ def create_file(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
         f.write('service:\nnickname:')
 
 
-def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
+def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml') -> dict | None:
     """Return data from config.yaml"""
     try:
         with open(path / filename) as f:
