@@ -1,5 +1,3 @@
-"""Cli interface for getgit"""
-
 from sys import argv, exit
 
 from .clone import clone_rep
@@ -40,33 +38,27 @@ def ask_git_version_service():
     return txt, gits
 
 
-def wishes():
+def print_wishes():
     print(f"\nEverything is ready! If you want change something "
           f"just go to {CONFIG_DIR} and change there data")
 
 
 class Os:
-    """
-    This is parent class of other classes such as GnuLinux or Windows
-    """
     def __init__(self):
         self.data = check_filling_of_data()
 
 
 class GnuLinux(Os):
-    """
-    Cli interface for GnuLinux systems
-    """
     def __init__(self):
         from simple_term_menu import TerminalMenu
         super().__init__()
 
-        if self.data == 0:
+        if self.data:
             """If user start this program for the first time"""
             introduce_program()
             menu_title = ask_git_version_service()[0]
             menu_items = ask_git_version_service()[1]
-        if self.data == 1:
+        else:
             """If user have the data in $HOME/.config/config.yaml"""
             menu_title = "Choose repository to clone\n"
             data_config = load_data()
@@ -75,12 +67,12 @@ class GnuLinux(Os):
         terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
 
-        if self.data == 0:
+        if self.data:
             git_service = ask_git_version_service()[1][menu_entry_index]
             nickname = input("Write you nickname: ")
             put_data(git_service, nickname)
-            wishes()
-        if self.data == 1:
+            print_wishes()
+        else:
             if menu_entry_index is not None:
                 # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
@@ -88,22 +80,17 @@ class GnuLinux(Os):
 
 
 class Windows(Os):
-    """Child of Os class
-    Cli interface for Windows or OS that
-    not support `simple_term_menu`
-    """
     def __init__(self):
         super().__init__()
-        if self.data == 0:
+        if self.data:
             """If user start this program for the first time"""
             introduce_program()
             git_service = self._select_option('Choose git version: ', ask_git_version_service()[1])
             nickname = input("Write your nickname: ")
 
             put_data(git_service, nickname)
-            wishes()
-
-        if self.data == 1:
+            print_wishes()
+        else:
             """If user have the data in .config/config.yaml"""
             print("\tChoose repository to clone\n")
             data_config = load_data()
