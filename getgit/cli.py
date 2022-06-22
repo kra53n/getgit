@@ -1,4 +1,7 @@
-from sys import argv, exit
+from sys import argv, exit, platform
+
+if platform == 'linux':
+    from simple_term_menu import TerminalMenu
 
 from .clone import clone_rep
 from .constants import CONFIG_DIR
@@ -43,7 +46,6 @@ class Os:
 
 class GnuLinux(Os):
     def __init__(self):
-        from simple_term_menu import TerminalMenu
         super().__init__()
 
         if self.data:
@@ -62,7 +64,6 @@ class GnuLinux(Os):
 
         if self.data:
             if menu_entry_index is not None:
-                # if user decided to quit from program
                 rep_name = menu_items[menu_entry_index]
                 dl_rep(rep_name)
         else:
@@ -75,6 +76,7 @@ class GnuLinux(Os):
 class Windows(Os):
     def __init__(self):
         super().__init__()
+
         if self.data:
             """If user have the data in .config/config.yaml"""
             print("\tChoose repository to clone\n")
@@ -89,7 +91,6 @@ class Windows(Os):
             introduce_program()
             git_service = self._select_option('Choose git version: ', get_config_data().keys())
             nickname = input("Write your nickname: ")
-
             put_data(git_service, nickname)
             print_wishes()
 
@@ -103,8 +104,7 @@ class Windows(Os):
 
 
 def cli():
-    from sys import platform
-    if platform == "win32":
+    if platform == 'win32':
         Windows()
-    if platform == "linux":
+    if platform == 'linux':
         GnuLinux()
