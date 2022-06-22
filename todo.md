@@ -1,7 +1,5 @@
 ## TODO
 
-- [ ] put outside some functions in classes
-- [ ] add 'Usage' to README.md
 - [ ] port selecting by parameter, by cli menu
 
 
@@ -11,13 +9,10 @@
 - [ ] make exiting on Windows
 
 
-### Ideas
-
-- [ ] if repository already in cwd --> return message that repository already there
-
-
 ## COMPLETE
 
+- [x] add 'Usage' to README.md
+- [x] put outside some functions in classes
 - [x] cli helper
 - [x] change settings: `getgit (-n, --name) profile_name (-s, --service) serivce_name`
 - [x] clone rep of user `getgit (-n, --name) profile_name (-s, --service) serivce_name (-r, --rep-name) rep_name`
