@@ -1,4 +1,5 @@
 from sys import platform, exit
+from typing import Sequence
 
 if platform == 'linux':
     from simple_term_menu import TerminalMenu
@@ -87,17 +88,17 @@ class Windows(Os):
         else:
             """If user start this program for the first time"""
             introduce_program()
-            git_service = self._select_option('Choose git version: ', get_config_data().keys())
+            git_service = self._select_option('Choose git version: ', tuple(get_config_data().keys()))
             nickname = input("Write your nickname: ")
             put_data(git_service, nickname)
             print_wishes()
 
-    def _select_option(self, title: str, opts: list) -> int:
+    def _select_option(self, title: str, opts: Sequence) -> int:
         for idx, opt in enumerate(opts, 1):
             print(f'\t{idx}. {opt}')
         print()
         while not (idx := input(title)).isdigit() or not 1 <= int(idx) <= len(opts):
-            print(f'Put digit from {1} to {len(opt)}')
+            print(f'Put digit from {1} to {len(opts)}')
         return opts[int(idx)-1]
 
 

@@ -40,7 +40,8 @@ def check_filling_of_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'
     """
     data = load_data(path)
     try:
-        return not all(map(lambda x: x is None, (data["service"], data["nickname"])))
+        fields = ('service', 'nickname')
+        return all(map(lambda x: x in data.keys(), fields)) and None not in (data[field] for field in fields)
     except TypeError:
         print(f"Config file was add in {CONFIG_DIR / filename}")
         exit()
