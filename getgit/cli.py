@@ -1,4 +1,4 @@
-from sys import platfrom, exit
+from sys import platform, exit
 
 if platform == 'linux':
     from simple_term_menu import TerminalMenu
