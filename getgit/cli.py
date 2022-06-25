@@ -103,7 +103,7 @@ class Windows(Os):
         for idx, opt in enumerate(opts, 1):
             print(f'\t{idx}. {opt}')
         print()
-        idx = get_num_from_user(title, f'Put digit from {1} to {len(opts)}', range(1, len(opts)+1))
+        idx = get_num_from_user(title, f'Put digit from 1 to {len(opts)}', range(1, len(opts)+1))
         return opts[idx-1]
 
 
