@@ -38,6 +38,12 @@ def dl_all():
     exit()
 
 
+def get_num_from_user(title: str, error_message: str, num_range: range) -> int:
+        while not (num := input(title)).isdigit() or not int(num) in num_range:
+            print(error_message)
+        return int(num)
+
+
 class Os:
     def __init__(self):
         self.data = check_filling_of_data()
@@ -97,9 +103,8 @@ class Windows(Os):
         for idx, opt in enumerate(opts, 1):
             print(f'\t{idx}. {opt}')
         print()
-        while not (idx := input(title)).isdigit() or not 1 <= int(idx) <= len(opts):
-            print(f'Put digit from {1} to {len(opts)}')
-        return opts[int(idx)-1]
+        idx = get_num_from_user(title, f'Put digit from {1} to {len(opts)}', range(1, len(opts)+1))
+        return opts[idx-1]
 
 
 def cli():
