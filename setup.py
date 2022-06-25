@@ -23,6 +23,8 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOs :: MacOs X",
+        "Operating System :: Microsoft :: Windows",
     ],
     packages=['getgit'],
     package_data={
