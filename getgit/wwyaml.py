@@ -26,6 +26,7 @@ def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml') -> dict | 
         create_file()
 
 
+#NOTE: use union data for service, nickname and port
 def put_data(service, nickname, path: Path = CONFIG_DIR, port: str = '',
         filename: str = 'config.yaml'):
     """Put service(github, gitlab, ...) and nickname in config.yaml"""
