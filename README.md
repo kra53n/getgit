@@ -4,10 +4,16 @@
 
 `It allows to clone only public repositories because of using web parsing.`
 
+[![Downloads](https://static.pepy.tech/personalized-badge/getgit?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pepy.tech/project/getgit)
+[![License](https://img.shields.io/badge/license-GPL3-blue.svg)](https://pepy.tech/project/getgit)
 
-## How to install
 
-### First way
+<details>
+<summary>Installing</summary>
+
+### Installing
+
+#### First way
 
 1. Install Python3.
 2. Install Getgit with the following `pip` command from the command prompt:
@@ -16,7 +22,7 @@
 pip install getgit
 ```
 
-### Second way
+#### Second way
 
 1. Install Python3.
 2. Clone Getgit with git command:
@@ -28,9 +34,13 @@ git clone https://github.com/Krai53n/getgit.git
 cd getgit
 python setup.py install_scripts
 ```
+</details>
 
 
-## How to use it
+<details>
+<summary>Usage</summary>
+
+### Usage
 
 Run cli:
 ```
@@ -51,3 +61,4 @@ Clone repository of some user:
 ```
 getgit -s service_name -n nick_name -r rep_name
 ```
+</details>
