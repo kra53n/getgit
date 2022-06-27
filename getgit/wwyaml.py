@@ -2,7 +2,7 @@
 
 from yaml import load, FullLoader, dump
 from dataclasses import dataclass
-rom pathlib import Path
+from pathlib import Path
 from os import makedirs
 import os.path
 from sys import exit
