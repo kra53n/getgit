@@ -31,7 +31,6 @@ def change_UserData(data1: UserData, data2: UserData) -> UserData:
     return data1
 
 
-
 def create_file(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
     """Create file in define path"""
     if not os.path.isdir(path):
