@@ -2,8 +2,7 @@
 
 from yaml import load, FullLoader, dump
 from dataclasses import dataclass
-from itertools import product
-from pathlib import Path
+rom pathlib import Path
 from os import makedirs
 import os.path
 from sys import exit
@@ -26,7 +25,7 @@ def load_dict_to_UserData(dct: dict, data: UserData) -> UserData:
 
 
 def change_UserData(data1: UserData, data2: UserData) -> UserData:
-    for _, (key2, val2) in product(data1.__dict__.items(), data2.__dict__.items()):
+    for key, val in data2.__dict__.items():
         if val2:
             data1.__dict__[key2] = val2
     return data1
