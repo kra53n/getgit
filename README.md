@@ -39,7 +39,8 @@ python setup.py install_scripts
 
 <details>
 <summary>Usage</summary>
-
+<br>
+  
 ```
 $ getgit -h
 usage: getgit [-h] [-s SERVICE] [-n NICKNAME] [-r REP_NAME] [-p PORT]
