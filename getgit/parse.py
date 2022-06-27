@@ -6,14 +6,15 @@ from pathlib import Path
 from sys import exit
 
 from .constants import CONFIG_DIR, CONFIG_PARSE_PATH
+from .wwyaml import UserData
 
 
-def get_config_data(path: Path = CONFIG_PARSE_PATH) -> dict:
+def get_parse_config_data(path: Path = CONFIG_PARSE_PATH) -> dict:
     return yaml_load(path.read_text())
 
 
-def get_url(service: str, nickname: str) -> str:
-    return get_config_data()[service]['url'].replace('nickname', nickname)
+def get_url(data: UserData) -> str:
+    return get_parse_config_data()[data.service]['url'].replace('nickname', data.nickname)
 
 
 def request_html(path):
@@ -49,22 +50,19 @@ def get_soup(url):
     return soup
 
 
-def parse_reps(service: str, path: str) -> list | None:
-    """
-    service - git service name
-    path - url path with git repositories
-    """
-    data = get_config_data(CONFIG_PARSE_PATH)[service]
+def parse_reps(data: UserData) -> list | None:
+    config = get_parse_config_data(CONFIG_PARSE_PATH)[data.service]
 
-    if 'attrs' not in data.keys():
+    if 'attrs' not in config.keys():
         return
 
-    tags = get_soup(path).find_all(data['tag'])
+    url = get_url(data)
+    tags = get_soup(url).find_all(config['tag'])
     rep_names = []
 
     for tag in tags:
-        if 'attrs' in data.keys():
-            for key, value in data['attrs'].items():
+        if 'attrs' in config.keys():
+            for key, value in config['attrs'].items():
                 if not (key in tag.attrs and tag.attrs[key] == value):
                     break
             else:

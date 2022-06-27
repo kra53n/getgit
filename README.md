@@ -40,25 +40,15 @@ python setup.py install_scripts
 <details>
 <summary>Usage</summary>
 
-### Usage
+```
+$ getgit -h
+usage: getgit [-h] [-s SERVICE] [-n NICKNAME] [-r REP_NAME] [-p PORT]
 
-Run cli:
+options:
+  -h, --help            show this help message and exit
+  -s SEME, --rep-name REP_NAME
+  -p PORT, --port PORTRVICE, --service SERVICE
+  -n NICKNAME, --nickname NICKNAME
+  -r REP_NAME, --rep-name REP_NAME
+  -p PORT, --port PORT
 ```
-getgit
-```
-
-Clone repository of user that set in configuration file
-```
-getgit -r rep_name
-```
-
-Change settings in configuration file:
-```
-getgit -s service_name -n nick_name
-```
-
-Clone repository of some user:
-```
-getgit -s service_name -n nick_name -r rep_name
-```
-</details>

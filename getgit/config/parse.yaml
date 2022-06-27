@@ -3,7 +3,7 @@ github:
   url: 'https://github.com/nickname?tab=repositories'
   rep: 'git@github.com:nickname/rep_name.git'
   rep-ssh: 'git@github.com:nickname/rep_name.git'
-  rep-http: 'https://github.com/nickname/rep_name.git'
+  rep-https: 'https://github.com/nickname/rep_name.git'
   attrs:
     itemprop: 'name codeRepository'
 

@@ -1,6 +1,8 @@
 """wwyaml - work with yaml"""
 
 from yaml import load, FullLoader, dump
+from dataclasses import dataclass
+from itertools import product
 from pathlib import Path
 from os import makedirs
 import os.path
@@ -9,29 +11,51 @@ from sys import exit
 from .constants import CONFIG_DIR
 
 
+@dataclass
+class UserData:
+    service: str = ''
+    nickname: str = ''
+    port: str = 'https'  # or ssh
+
+
+def load_dict_to_UserData(dct: dict, data: UserData) -> UserData:
+    for key in data.__dict__.keys():
+        if key in dct:
+            data.__dict__[key] = dct[key]
+    return data
+
+
+def change_UserData(data1: UserData, data2: UserData) -> UserData:
+    for _, (key2, val2) in product(data1.__dict__.items(), data2.__dict__.items()):
+        if val2:
+            data1.__dict__[key2] = val2
+    return data1
+
+
+
 def create_file(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
     """Create file in define path"""
     if not os.path.isdir(path):
         makedirs(path)
     with open(path / filename, "w") as f:
-        f.write('service:\nnickname:')
+        fields = (f'{field}:' for field in UserData.__dict__.keys())
+        f.write('\n'.join(fields))
 
 
-def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml') -> dict | None:
+def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml') -> UserData | None:
     """Return data from config.yaml"""
     try:
         with open(path / filename) as f:
-            return load(f, Loader=FullLoader)
+            return load_dict_to_UserData(load(f, Loader=FullLoader), UserData())
     except FileNotFoundError:
         create_file()
+        return
 
 
-#NOTE: use union data for service, nickname and port
-def put_data(service, nickname, path: Path = CONFIG_DIR, port: str = '',
-        filename: str = 'config.yaml'):
+def put_data(data: UserData, path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
     """Put service(github, gitlab, ...) and nickname in config.yaml"""
     with open(path / filename, "w") as f:
-        dump({'service': service, 'nickname': nickname, 'port': port}, f)
+        dump(data.__dict__, f)
 
 
 def check_filling_of_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
@@ -42,7 +66,7 @@ def check_filling_of_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'
     data = load_data(path)
     try:
         fields = ('service', 'nickname')
-        return all(map(lambda x: x in data.keys(), fields)) and None not in (data[field] for field in fields)
+        return all(map(lambda x: x in data.__dict__.keys(), fields)) and None not in (data.__dict__[field] for field in fields)
     except TypeError:
         print(f"Config file was add in {CONFIG_DIR / filename}")
         exit()
