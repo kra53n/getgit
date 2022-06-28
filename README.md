@@ -30,7 +30,7 @@ pip install getgit
 4. Use Python command for installing scripts below:
 
 ```sh
-git clone https://github.com/Krai53n/getgit.git
+git clone https://github.com/kra53n/getgit.git
 cd getgit
 python setup.py install_scripts
 ```
