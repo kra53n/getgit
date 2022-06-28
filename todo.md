@@ -1,6 +1,6 @@
 ## TODO
 
-- [ ] port selecting by parameter, by cli menu
+- [ ] show config data from args
 
 
 ### Windows
@@ -11,6 +11,7 @@
 
 ## COMPLETE
 
+- [x] port selecting by parameter, by cli menu
 - [x] add 'Usage' to README.md
 - [x] put outside some functions in classes
 - [x] cli helper
