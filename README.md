@@ -1,4 +1,4 @@
-## Getgit
+# Getgit
 
 **Getgit** - terminal utility that allows to clone user repositories.
 
@@ -11,9 +11,9 @@
 <details>
 <summary>Installing</summary>
 
-### Installing
+## Installing
 
-#### First way
+### First way
 
 1. Install Python3.
 2. Install Getgit with the following `pip` command from the command prompt:
@@ -22,7 +22,7 @@
 pip install getgit
 ```
 
-#### Second way
+### Second way
 
 1. Install Python3.
 2. Clone Getgit with git command:
@@ -39,7 +39,8 @@ python setup.py install_scripts
 
 <details>
 <summary>Usage</summary>
-<br>
+
+## Usage
   
 ```
 $ getgit -h
