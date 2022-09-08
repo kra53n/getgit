@@ -26,8 +26,8 @@ def load_dict_to_UserData(dct: dict, data: UserData) -> UserData:
 
 def change_UserData(data1: UserData, data2: UserData) -> UserData:
     for key, val in data2.__dict__.items():
-        if val2:
-            data1.__dict__[key2] = val2
+        if val:
+            data1.__dict__[key] = val
     return data1
 
 

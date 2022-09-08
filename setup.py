@@ -26,11 +26,7 @@ setup(
         "Operating System :: Microsoft :: Windows",
     ],
     packages=['getgit'],
-    package_data={
-        '': [
-            'config\*.yaml',
-        ],
-    },
+    package_data={'': ['config/*.yaml']},
     entry_points={
         "console_scripts":
             ["getgit = getgit.main:main"]

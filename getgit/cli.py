@@ -62,7 +62,7 @@ class GnuLinux(Os):
             """If user start this program for the first time"""
             introduce_program()
             menu_title = 'Git service: '
-            menu_items = get_parse_config_data().keys()
+            menu_items = tuple(get_parse_config_data().keys())
 
         terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
@@ -74,7 +74,7 @@ class GnuLinux(Os):
         else:
             user_data = UserData(
                 service=menu_items[menu_entry_index],
-                nickname=input('Nickname'))
+                nickname=input('Nickname: '))
             put_data(user_data)
             print_wishes()
 
