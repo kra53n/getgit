@@ -1,5 +1,4 @@
-from requests import exceptions as requests_exceptions
-from requests import get as requests_get
+import requests
 from yaml import safe_load as yaml_load
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -23,8 +22,8 @@ def request_html(path):
     return False
     """
     try:
-        html_doc = requests_get(path)
-    except requests_exceptions.ConnectionError:
+        html_doc = requests.get(path)
+    except requests.exceptions.ConnectionError:
         print("You lost your internet connection!")
         exit()
 

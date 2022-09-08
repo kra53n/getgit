@@ -12,13 +12,13 @@ from .wwyaml import UserData, check_filling_of_data, load_data, put_data
 
 def introduce_program():
     space = ' ' * 4
-    print(f'\n{space}Welcome to getgit! I hope this script will useful for you!'
-          f'\n{space}From people to people (^_−)☆.\n')
+    print(f'\n{space}Welcome to getgit! I hope this script will be useful for you!'
+          f'\n{space}By people for people (^_−)☆.\n')
 
 
 def print_wishes():
-    print(f'\nEverything is ready! If you want change something '
-          f'just go to {CONFIG_DIR} and change there data')
+    print(f'\nEverything is ready! If you want to change settings '
+          f'just go to config dir {CONFIG_DIR} and change there data')
 
 
 def dl_rep(rep_name: str):
