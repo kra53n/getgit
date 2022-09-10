@@ -16,7 +16,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     license='GPL3',
-    url='https://github.com/Krai53n/getgit',
+    url='https://github.com/kra53n/getgit',
     author='Gregory Bakhtin',
     author_email='greasha46@gmail.com',
     install_requires=requirements,
