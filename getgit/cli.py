@@ -5,7 +5,7 @@ if platform == 'linux':
     from simple_term_menu import TerminalMenu
 
 from .clone import clone_rep
-from .constants import CONFIG_DIR
+from .constants import CONFIG_DIR, CONFIG_NAME
 from .parse import get_parse_config_data, parse_reps, get_url
 from .wwyaml import UserData, check_filling_of_data, load_data, put_data
 
@@ -19,6 +19,16 @@ def introduce_program():
 def print_wishes():
     print(f'\nEverything is ready! If you want to change settings '
           f'just go to config dir {CONFIG_DIR} and change there data')
+
+
+def print_cfg_info():
+    file = CONFIG_DIR / CONFIG_NAME
+    abs_path = str(file.absolute())
+    if not file.exists():
+        print('Config does not exist yet in {abs_path}')
+        return
+    print('Config info in {abs_path}')
+    print(file.read_text())
 
 
 def dl_rep(rep_name: str):
