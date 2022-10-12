@@ -8,5 +8,5 @@ def parse_args():
     args.add_argument('-n', '--nickname', type=str)
     args.add_argument('-r', '--rep-name', type=str)
     args.add_argument('-p', '--port', type=str)
-    args.add_argument('-c', '--cfg-info')
+    args.add_argument('-c', '--cfg-info', action='store_true')
     return args.parse_args()
