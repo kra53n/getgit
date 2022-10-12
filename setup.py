@@ -20,15 +20,20 @@ setup(
     author='Gregory Bakhtin',
     author_email='greasha46@gmail.com',
     install_requires=requirements,
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "Operating System :: POSIX :: Linux",
-        "Operating System :: Microsoft :: Windows",
-    ],
     packages=['getgit'],
     package_data={'': ['config/*.yaml']},
     entry_points={
         "console_scripts":
             ["getgit = getgit.main:main"]
     }
+    classifiers=[
+        "Topic :: Control :: Git",
+        "Topic :: Utilities",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Programming Language :: Python :: 3",
+        "Operating System :: POSIX :: Linux",
+        "Operating System :: MacOS",
+        "Operating System :: Microsoft :: Windows",
+        "Environment :: Console",
+    ],
 )
