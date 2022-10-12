@@ -27,7 +27,7 @@ def print_cfg_info():
     if not file.exists():
         print('Config does not exist yet in {abs_path}')
         return
-    print('Config info in {abs_path}')
+    print(f'Config info in {abs_path}\n')
     print(file.read_text())
 
 
