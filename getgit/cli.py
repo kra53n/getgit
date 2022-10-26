@@ -1,5 +1,6 @@
 from sys import platform, exit
 from typing import Sequence
+from dataclasses import dataclass
 
 if platform == 'linux':
     from simple_term_menu import TerminalMenu
@@ -12,17 +13,7 @@ from .wwyaml import UserData, check_filling_of_data, load_data, put_data
 
 
 MENU_TITLE_CHOOSE_REP = '\nChoose repository to clone\n'
-
-
-def introduce_program():
-    space = ' ' * 4
-    print(f'\n{space}Welcome to getgit! I hope this script will be useful for you!'
-          f'\n{space}By people for people (^_−)☆.\n')
-
-
-def print_wishes():
-    print(f'\nEverything is ready! If you want to change settings '
-          f'just go to config dir {CONFIG_DIR} and change there data')
+SPACES = ' ' * 4
 
 
 def print_cfg_info():
@@ -58,6 +49,16 @@ def get_num_from_user(title: str, error_message: str, num_range: range) -> int:
     return int(num)
 
 
+@dataclass
+class Messages:
+    intro = f'\n{SPACES}Welcome to getgit! I hope this script will be useful for you!' \
+            f'\n{SPACES}By people for people (^_−)☆.\n'
+
+    wishes = f'\nEverything is ready! If you want to change settings ' \
+             f'just go to config dir {CONFIG_DIR} and change there data'
+
+
+
 class Os:
     def __init__(self):
         self.data = check_filling_of_data()
@@ -74,7 +75,7 @@ class GnuLinux(Os):
             menu_items = parse_reps(user_data)
         else:
             """If user start this program for the first time"""
-            introduce_program()
+            print(Messages.intro)
             menu_title = 'Git service: '
             menu_items = tuple(get_parse_config_data().keys())
 
@@ -91,7 +92,7 @@ class GnuLinux(Os):
                 service=menu_items[menu_entry_index],
                 nickname=input('Nickname: '))
             put_data(user_data)
-            print_wishes()
+            print(Messages.wishes)
 
 
 class Windows(Os):
@@ -106,13 +107,13 @@ class Windows(Os):
             clone_rep(user_data, rep_name)
         else:
             """If user start this program for the first time"""
-            introduce_program()
+            print(Messages.intro)
             user_data = UserData(
                 service=self._select_option('Git service: ', tuple(get_parse_config_data().keys())),
                 nickname=input('Nickname: '),
                 port=input('Port (ssh or https) default - https: '))
             put_data(user_data)
-            print_wishes()
+            print(Messages.wishes)
 
     def _select_option(self, title: str, opts: Sequence) -> str:
         for idx, opt in enumerate(opts, 1):
