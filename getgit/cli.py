@@ -10,6 +10,10 @@ from .parse import get_parse_config_data, parse_reps, get_url
 from .wwyaml import UserData, check_filling_of_data, load_data, put_data
 
 
+
+MENU_TITLE_CHOOSE_REP = '\nChoose repository to clone\n'
+
+
 def introduce_program():
     space = ' ' * 4
     print(f'\n{space}Welcome to getgit! I hope this script will be useful for you!'
@@ -65,7 +69,7 @@ class GnuLinux(Os):
 
         if self.data:
             """If user have the data in $HOME/.config/config.yaml"""
-            menu_title = "Choose repository to clone\n"
+            menu_title = MENU_TITLE_CHOOSE_REP
             user_data = load_data()
             menu_items = parse_reps(user_data)
         else:
@@ -76,6 +80,7 @@ class GnuLinux(Os):
 
         terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
         menu_entry_index = terminal_menu.show()
+
 
         if self.data:
             if menu_entry_index is not None:
@@ -95,7 +100,7 @@ class Windows(Os):
 
         if self.data:
             """If user have the data in .config/config.yaml"""
-            print("\tChoose repository to clone\n")
+            print(MENU_TITLE_CHOOSE_REP)
             user_data = load_data()
             rep_name = self._select_option('Repository: ', parse_reps(user_data))
             clone_rep(user_data, rep_name)
