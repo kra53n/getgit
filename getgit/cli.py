@@ -97,10 +97,7 @@ class Windows(Os):
             """If user have the data in .config/config.yaml"""
             print("\tChoose repository to clone\n")
             user_data = load_data()
-            rep_name = self._select_option(
-                'Choose repository: ',
-                parse_reps(user_data),
-            )
+            rep_name = self._select_option('Repository: ', parse_reps(user_data))
             clone_rep(user_data, rep_name)
         else:
             """If user start this program for the first time"""
