@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 from sys import exit
 
-from .constants import CONFIG_DIR, CONFIG_PARSE_PATH
+from .config import USER_CONFIG_DIR, PARSE_CONFIG_PATH
 from .wwyaml import UserData
 
 
-def get_parse_config_data(path: Path = CONFIG_PARSE_PATH) -> dict:
+def get_parse_config_data(path: Path = PARSE_CONFIG_PATH) -> dict:
     return yaml_load(path.read_text())
 
 
@@ -42,7 +42,7 @@ def get_soup(url):
     except TypeError:
         # if user have incorrect nickname
         message = f"You put incorrect nickname, " \
-                  f"go to {CONFIG_DIR}" \
+                  f"go to {USER_CONFIG_DIR}" \
                   f" and change in config.yaml `nickname`"
         print(message)
         exit()
@@ -50,7 +50,7 @@ def get_soup(url):
 
 
 def parse_reps(data: UserData) -> list | None:
-    config = get_parse_config_data(CONFIG_PARSE_PATH)[data.service]
+    config = get_parse_config_data(PARSE_CONFIG_PATH)[data.service]
 
     if 'attrs' not in config.keys():
         return

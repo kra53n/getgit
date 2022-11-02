@@ -7,7 +7,7 @@ from os import makedirs
 import os.path
 from sys import exit
 
-from .constants import CONFIG_DIR
+from .config import USER_CONFIG_DIR
 
 
 @dataclass
@@ -31,7 +31,7 @@ def change_UserData(data1: UserData, data2: UserData) -> UserData:
     return data1
 
 
-def create_file(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
+def create_file(path: Path = USER_CONFIG_DIR, filename: str = 'config.yaml'):
     """Create file in define path"""
     if not os.path.isdir(path):
         makedirs(path)
@@ -40,7 +40,7 @@ def create_file(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
         f.write('\n'.join(fields))
 
 
-def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml') -> UserData | None:
+def load_data(path: Path = USER_CONFIG_DIR, filename: str = 'config.yaml') -> UserData | None:
     """Return data from config.yaml"""
     try:
         with open(path / filename) as f:
@@ -50,13 +50,13 @@ def load_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml') -> UserDat
         return
 
 
-def put_data(data: UserData, path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
+def put_data(data: UserData, path: Path = USER_CONFIG_DIR, filename: str = 'config.yaml'):
     """Put service(github, gitlab, ...) and nickname in config.yaml"""
     with open(path / filename, "w") as f:
         dump(data.__dict__, f)
 
 
-def check_filling_of_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'):
+def check_filling_of_data(path: Path = USER_CONFIG_DIR, filename: str = 'config.yaml'):
     """
     Return 1 if service and nickname in config.yaml exist.  
     Otherwise return 0.
@@ -66,5 +66,5 @@ def check_filling_of_data(path: Path = CONFIG_DIR, filename: str = 'config.yaml'
         fields = ('service', 'nickname')
         return all(map(lambda x: x in data.__dict__.keys(), fields)) and None not in (data.__dict__[field] for field in fields)
     except TypeError:
-        print(f"Config file was add in {CONFIG_DIR / filename}")
+        print(f"Config file was add in {USER_CONFIG_DIR / filename}")
         exit()
