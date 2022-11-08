@@ -1,7 +1,7 @@
 from setuptools import setup
 from sys import platform
 
-from getgit.constants import PROG_NAME, PROG_VERS
+from getgit.config import PROG_NAME, PROG_VERS
 
 
 requirements = ['bs4', 'pyyaml', 'requests']
@@ -25,7 +25,7 @@ setup(
     entry_points={
         "console_scripts":
             ["getgit = getgit.main:main"]
-    }
+    },
     classifiers=[
         "Topic :: Control :: Git",
         "Topic :: Utilities",

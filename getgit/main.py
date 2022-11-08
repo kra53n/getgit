@@ -1,6 +1,7 @@
 from .cli import cli, print_cfg_info, print_repositories_list
 from .args import parse_args
 from .clone import clone_rep
+from .config import PROG_VERS
 from .wwyaml import UserData, load_dict_to_UserData, change_UserData, put_data, load_data
 
 
@@ -14,6 +15,8 @@ def main():
         put_data(user_data)
     elif any((args.service, args.nickname, args.port)):
         put_data(user_data)
+    elif args.version:
+        print(f'getgit {PROG_VERS}')
     elif args.rep_name:
         clone_rep(user_data, args.rep_name)
     elif args.cfg_info:
