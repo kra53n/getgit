@@ -1,4 +1,4 @@
-from .cli import cli, print_cfg_info
+from .cli import cli, print_cfg_info, print_repositories_list
 from .args import parse_args
 from .clone import clone_rep
 from .wwyaml import UserData, load_dict_to_UserData, change_UserData, put_data, load_data
@@ -18,5 +18,7 @@ def main():
         clone_rep(user_data, args.rep_name)
     elif args.cfg_info:
         print_cfg_info()
+    elif args.list:
+        print_repositories_list()
     else:
         cli()

@@ -6,7 +6,7 @@ if platform == 'linux':
     from simple_term_menu import TerminalMenu
 
 from .clone import clone_rep
-from .config import USER_CONFIG_DIR, USER_CONFIG_NAME
+from .config import USER_CONFIG_DIR, USER_CONFIG_NAME, BASE_DIR
 from .parse import get_parse_config_data, parse_reps, get_url
 from .wwyaml import UserData, check_filling_of_data, load_data, put_data
 
@@ -25,6 +25,14 @@ def print_cfg_info():
     print(f'Config info in {abs_path}\n')
     print(file.read_text())
 
+def print_repositories_list():
+    file = BASE_DIR / ".repos"
+    abs_path = str(file.absolute())
+    if not file.exists():
+        print(f'Repositories list file does not exist in {abs_path}')
+        return
+    print("Cloned repositories (user/repo-name):")
+    print(file.read_text())
 
 def dl_rep(rep_name: str):
     user_data = load_data()
