@@ -48,6 +48,7 @@ usage: getgit [-h] [-s SERVICE] [-n NICKNAME] [-r REP_NAME] [-p PORT]
 
 options:
   -h, --help            show this help message and exit
+  -l, --list             list all cloned repositories
   -s SERVICE, --service SERVICE
   -n NICKNAME, --nickname NICKNAME
   -r REP_NAME, --rep-name REP_NAME
