@@ -8,4 +8,4 @@ USER_CONFIG_DIR = Path.home() / '.config/getgit'
 USER_CONFIG_NAME = 'config.yaml'
 PARSE_CONFIG_PATH = Path(__file__).parent / 'config/parse.yaml'
 
-BASE_DIR = Path.home()
+REPOS_TEXT_FILE = '.repos'
