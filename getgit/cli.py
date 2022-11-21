@@ -109,7 +109,7 @@ class Windows(Os):
             """If user start this program for the first time"""
             print(Messages.intro)
             user_data = UserData(
-                service=self._select_option('Git service: ', tuple(get_parse_config_data().keys())),
+                service = self._select_option('Git service: ', tuple(get_parse_config_data().keys())),
                 nickname=input('Nickname: '),
                 port=input('Port (ssh or https) default - https: '))
             put_data(user_data)
