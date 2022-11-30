@@ -41,16 +41,5 @@ python setup.py install_scripts
 <summary>Usage</summary>
 
 ## Usage
-  
-```
-$ getgit -h
-usage: getgit [-h] [-s SERVICE] [-n NICKNAME] [-r REP_NAME] [-p PORT]
 
-options:
-  -h, --help            show this help message and exit
-  -s SERVICE, --service SERVICE
-  -n NICKNAME, --nickname NICKNAME
-  -r REP_NAME, --rep-name REP_NAME
-  -p PORT, --port PORT
-  -c CFG_INFO, --cfg-info CFG_INFO
-```
+Type `getgit -h` in command prompt for usage information.
