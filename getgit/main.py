@@ -1,3 +1,5 @@
+from sys import argv
+
 from .cli import cli, print_cfg_info
 from .args import parse_args
 from .clone import clone_rep
@@ -8,24 +10,23 @@ from .wwyaml import (UserData, load_dict_to_UserData, change_UserData,
 
 
 def main():
+    argc = len(argv)
     args = parse_args()
     user_data = change_UserData(load_data(),
                                 load_dict_to_UserData(args.__dict__,UserData()))
-
-    if all((args.service, args.nickname, args.rep_name, args.port)) or all((args.service, args.nickname, args.rep_name)):
-        clone_rep(user_data, args.rep_name)
-    elif all((args.service, args.nickname)):
+    if argc == 1:
+        cli()
+    elif args.change:
         put_data(user_data)
-    elif any((args.service, args.nickname, args.port)):
-        put_data(user_data)
-    elif args.version:
-        print(f'getgit {PROG_VERS}')
     elif args.rep_name:
         clone_rep(user_data, args.rep_name)
+    elif args.version:
+        print(f'getgit {PROG_VERS}')
     elif args.cfg_info:
         print_cfg_info()
     elif args.list:
         for rep in parse_reps(user_data):
             print(rep)
     else:
-        cli()
+        print('getgit requires `--change` flag to change settings in config')
+        print('otherwise print `getgit -h` to see help')

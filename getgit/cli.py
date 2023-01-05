@@ -50,10 +50,12 @@ def get_num_from_user(title: str, error_message: str, num_range: range) -> int:
 
 
 def process_interrupts(decorator):
-    try:
-        decorator()
-    except KeyboardInterrupt:
-        exit(0)
+    def wrapper():
+        try:
+            decorator()
+        except KeyboardInterrupt:
+            exit(0)
+    return wrapper
 
 
 @dataclass

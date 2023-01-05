@@ -11,7 +11,7 @@ if platform == 'linux':
 
 setup(
     name=PROG_NAME,
-    version=PROG_VERS,
+    version='0.1.8',
     description='Cloning repositories of user',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
