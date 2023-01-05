@@ -49,6 +49,13 @@ def get_num_from_user(title: str, error_message: str, num_range: range) -> int:
     return int(num)
 
 
+def process_interrupts(decorator):
+    try:
+        decorator()
+    except KeyboardInterrupt:
+        exit(0)
+
+
 @dataclass
 class Messages:
     intro = f'\n{SPACES}Welcome to getgit! I hope this script will be useful for you!' \
@@ -123,6 +130,7 @@ class Windows(Os):
         return opts[idx - 1]
 
 
+@process_interrupts
 def cli():
     if platform == 'win32':
         Windows()
