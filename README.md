@@ -2,7 +2,8 @@
 
 **Getgit** - terminal utility that allows to clone user repositories.
 
-`It allows to clone only public repositories because of using web parsing.`
+> **Note**
+> It allows to clone only public repositories because of using web parsing.
 
 [![Downloads](https://static.pepy.tech/personalized-badge/getgit?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pepy.tech/project/getgit)
 [![License](https://img.shields.io/badge/license-GPL3-blue.svg)](https://pepy.tech/project/getgit)
