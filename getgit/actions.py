@@ -18,8 +18,8 @@ def dl_rep(rep_name: str):
     clone_rep(user_data, rep_name)
 
 
-def get_info_about_user_from_config(config_path: Path = USER_CONFIG_DIR / filename):
-    pass
+def get_info_about_user_from_config(config_path: Path = USER_CONFIG_DIR / filename) -> None:
+    return
 
 
 def dl_all():

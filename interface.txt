@@ -1,0 +1,36 @@
+config.ini interface
+---------------------
+
+I think the information between brackets will be called the
+`setting`. There could be defined properties in wich setting. There will be
+`default` setting with all properties. Another settings without
+defined properties will be set by properties from default setting.
+
+Properties list:
+- nickname
+- port
+- service
+
+Information about ini file: https://en.wikipedia.org/wiki/INI_file.
+
+
+How file will looks like
+------------------------
+
+[default]
+
+nickname = kra53n
+port = ssh
+service = github
+
+[gitlab]
+
+nickname = kra53n
+service = gitlab
+
+[c0ldst33l]
+
+nickname = c0ldst33l
+
+
+The next task is to think about cli interface.
