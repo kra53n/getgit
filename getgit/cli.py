@@ -2,9 +2,6 @@ from sys import platform, exit
 from typing import Sequence
 from dataclasses import dataclass
 
-if platform == 'linux':
-    from simple_term_menu import TerminalMenu
-
 from .clone import clone_rep
 from .config import USER_CONFIG_DIR, USER_CONFIG_NAME
 from .parse import get_parse_config_data, parse_reps, get_url
@@ -24,29 +21,6 @@ def print_cfg_info():
         return
     print(f'Config info in {abs_path}\n')
     print(file.read_text())
-
-
-def dl_rep(rep_name: str):
-    user_data = load_data()
-    clone_rep(user_data, rep_name)
-    exit()
-
-
-def dl_all():
-    """
-    Download all visible repositories of user
-    """
-    user_data = load_data()
-    reps_names = parse_reps(user_data)
-    for rep_name in reps_names:
-        clone_rep(user_data, rep_name)
-    exit()
-
-
-def get_num_from_user(title: str, error_message: str, num_range: range) -> int:
-    while not (num := input(title)).isdigit() or not int(num) in num_range:
-        print(error_message)
-    return int(num)
 
 
 def process_interrupts(decorator):
@@ -71,37 +45,6 @@ class Messages:
 class Os:
     def __init__(self):
         self.data = check_filling_of_data()
-
-
-class GnuLinux(Os):
-    def __init__(self):
-        super().__init__()
-
-        if self.data:
-            """If user have the data in $HOME/.config/config.yaml"""
-            menu_title = MENU_TITLE_CHOOSE_REP
-            user_data = load_data()
-            menu_items = parse_reps(user_data)
-        else:
-            """If user start this program for the first time"""
-            print(Messages.intro)
-            menu_title = 'Git service: '
-            menu_items = tuple(get_parse_config_data().keys())
-
-        terminal_menu = TerminalMenu(menu_entries=menu_items, title=menu_title)
-        menu_entry_index = terminal_menu.show()
-
-
-        if self.data:
-            if menu_entry_index is not None:
-                rep_name = menu_items[menu_entry_index]
-                dl_rep(rep_name)
-        else:
-            user_data = UserData(
-                service=menu_items[menu_entry_index],
-                nickname=input('Nickname: '))
-            put_data(user_data)
-            print(Messages.wishes)
 
 
 class Windows(Os):
@@ -134,7 +77,11 @@ class Windows(Os):
 
 @process_interrupts
 def cli():
-    if platform == 'win32':
-        Windows()
-    if platform == 'linux':
-        GnuLinux()
+    user_info = get_info_about_user_from_config()
+    if user_info:
+        rep_name = ask_user_rep_name()
+        clone_rep(user_info, rep_name)
+    else:
+        print(Messages.intro)
+        user_info = ask_user_for_his_info()
+        save_user_info_to_config(user_info)
