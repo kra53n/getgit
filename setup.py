@@ -27,13 +27,16 @@ setup(
             ["getgit = getgit.main:main"]
     },
     classifiers=[
-        "Topic :: Control :: Git",
         "Topic :: Utilities",
+        "Topic :: Software Development",
+        "Topic :: Software Development :: Version Control",
+        "Topic :: Software Development :: Version Control :: Git ",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Programming Language :: Python :: 3",
-        "Operating System :: POSIX :: Linux",
+        "Operating System :: POSIX",
         "Operating System :: MacOS",
         "Operating System :: Microsoft :: Windows",
         "Environment :: Console",
+        "Environment :: Console :: CURSES",
     ],
 )
