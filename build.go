@@ -21,19 +21,16 @@ func main() {
 	var srcs = []string{"main.go"}
 	var args = os.Args
 
-	// clean
 	args = os.Args[1:]
-	if len(args) > 0 {
+
+	// clean
+	if len(args) > 0 && (args[0] == "clean" || args[0] == "c") {
 		// TODO(kra53n) consider flags package
-		switch args[0] {
-		case "clean", "c":
-			logger.Info("delete " + "./" + buildDir)
-			os.RemoveAll(buildDir)
-			return
-		}
-		logger.Error("does not know " + args[0] + " command")
+		logger.Info("delete " + "./" + buildDir)
+		os.RemoveAll(buildDir)
 		return
 	}
+	// logger.Error("does not know " + args[0] + " command")
 
 	// format
 	build = append(build, "go")
@@ -72,13 +69,27 @@ func main() {
 	}
 
 	// run
-	build = build[:0]
+	if len(args) > 0 && (args[0] == "run" || args[0] == "r") {
+		args := args[1:]
+		build = build[:0]
 
-	build = append(build, "./" + progPath + ".exe")
-	c = execCommand(build...)
-	c.Stderr = os.Stdout
-	c.Stdout = os.Stdout
-	c.Run()
+		build = append(build, "./" + progPath + ".exe") // TODO(kra53n): delete ".exe" for non windows systems
+
+		// build = append(build, "-help")
+
+		// build = append(build, "-rep")
+		// build = append(build, "hello")
+
+		// build = append(build, "repo")
+
+		build = append(build, args...)
+
+		c = execCommand(build...)
+		c.Stderr = os.Stdout
+		c.Stdout = os.Stdout
+		c.Run()
+		return
+	}
 }
 
 // ----------------------------------------------------------------------------
