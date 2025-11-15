@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log/slog"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -21,6 +23,7 @@ func main() {
 	if runtime.GOOS == "windows" {
 		progPath += ".exe"
 	}
+	var installDir = "/home/kra53n/.local/bin" // absolute path required
 	var srcs = []string{"main.go"}
 	var args = os.Args
 
@@ -71,12 +74,32 @@ func main() {
 		return
 	}
 
+	// install (symlink to directory with executables)
+	if len(args) > 0 && (args[0] == "install" || args[0] == "i") {
+		var src, dst string
+
+		if src, err = filepath.Abs(progPath); err != nil {
+			logger.Error(err.Error())
+		}
+		dst = installDir + "/" + progName
+
+		if _, err = os.Lstat(dst); !errors.Is(err, os.ErrNotExist) {
+			logger.Info("remove old symlink at " + dst)
+			os.Remove(dst)
+		}
+		logger.Info("symlink " + src + " with " + dst)
+		if err = os.Symlink(src, dst); err != nil {
+			logger.Error(err.Error())
+		}
+		return
+	}
+
 	// run
 	if len(args) > 0 && (args[0] == "run" || args[0] == "r") {
 		args := args[1:]
 		build = build[:0]
 
-		build = append(build, "./" + progPath)
+		build = append(build, "./"+progPath)
 
 		// build = append(build, "-help")
 
@@ -208,7 +231,7 @@ func rebuildUrself() {
 	}
 
 	var c []string
-	c = append(c, "./" + binFilename)
+	c = append(c, "./"+binFilename)
 	c = append(c, os.Args[1:]...)
 
 	cmd = execCommand(c...)
