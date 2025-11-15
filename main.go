@@ -38,6 +38,8 @@ var config = Config{
 var setup Setup
 var useByDefault string = "github"
 
+var debugFile *os.File = os.Stderr // debug file descriptor for debug logger mode
+
 func init() {
 	// get arguments
 	nickname := flag.String("name", "", "nickname on git-hosting")
@@ -137,8 +139,6 @@ func main() {
 }
 
 var logger *slog.Logger = slog.New(LoggerHandler{})
-
-var debugFile *os.File = os.Stderr // debug file descriptor for debug logger mode
 
 func (s *Setup) String() string {
 	var b strings.Builder
