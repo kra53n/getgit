@@ -18,6 +18,9 @@ func main() {
 	var progName = "gg"
 	var buildDir = "build"
 	var progPath = buildDir + "/" + progName
+	if runtime.GOOS == "windows" {
+		progPath += ".exe"
+	}
 	var srcs = []string{"main.go"}
 	var args = os.Args
 
@@ -56,7 +59,7 @@ func main() {
 	build = append(build, "build")
 
 	build = append(build, "-o")
-	build = append(build, progPath + ".exe")
+	build = append(build, progPath)
 
 	for _, src := range srcs {
 		build = append(build, src)
@@ -73,7 +76,7 @@ func main() {
 		args := args[1:]
 		build = build[:0]
 
-		build = append(build, "./" + progPath + ".exe") // TODO(kra53n): delete ".exe" for non windows systems
+		build = append(build, "./" + progPath)
 
 		// build = append(build, "-help")
 
